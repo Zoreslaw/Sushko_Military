@@ -133,7 +133,7 @@ const Hero = () => {
                 gradient={{ from: 'gold', to: 'orange', deg: 45 }}
                 className="glow-gold"
               >
-                Українська технології
+                Українська технологія
               </Badge>
             </Group>
             
