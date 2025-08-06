@@ -1,0 +1,31 @@
+import { MantineProvider } from '@mantine/core';
+import { theme } from './mantine';
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import HowItWorks from './components/HowItWorks';
+import Specs from './components/Specs';
+import Cases from './components/Cases';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    <MantineProvider theme={theme} defaultColorScheme="dark">
+      <div className="relative bg-gradient-to-b from-military-dark to-military-green text-white font-sans overflow-x-hidden">
+        <Navigation />
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <Specs />
+        <Cases />
+        <FAQ />
+        <Contact />
+        <Footer />
+      </div>
+    </MantineProvider>
+  );
+}
+
+export default App;
