@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { Container, Title, Text, Group, Button, Box, Stack, Badge } from '@mantine/core';
+import { Container, Title, Text, Group, Button, Box } from '@mantine/core';
 import { IconEye, IconShield, IconBolt } from '@tabler/icons-react';
-import TextureBackground from './TextureBackground';
 
 const Hero = () => {
   return (
@@ -126,17 +125,6 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <Group justify="center" mb="md">
-              <Badge
-                size="lg"
-                variant="gradient"
-                gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                className="glow-gold"
-              >
-                Українська технологія
-              </Badge>
-            </Group>
-            
             <Title
               order={1}
               size="4rem"
@@ -202,7 +190,7 @@ const Hero = () => {
               }}
               hiddenFrom="md"
             >
-              Інноваційні рішення для тактичного спостереження в польових умовах.
+              Інноваційні рішення для тактичного спостереження: висока точність, надійність та готовність до роботи.
             </Text>
           </motion.div>
           
