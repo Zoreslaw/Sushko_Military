@@ -33,10 +33,19 @@ const Contact = () => {
     },
   });
 
-  const handleSubmit = () => {
-    // Здесь можно добавить логику отправки формы
-    alert('Дякуємо за повідомлення! Ми зв\'яжемося з вами найближчим часом.');
-    form.reset();
+  const handleSubmit = async (values: any) => {
+    try {
+      const resp = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      if (!resp.ok) throw new Error('Network error');
+      alert('Дякуємо! Повідомлення надіслано.');
+      form.reset();
+    } catch (e) {
+      alert('Сталася помилка при надсиланні. Спробуйте ще раз пізніше.');
+    }
   };
 
   return (

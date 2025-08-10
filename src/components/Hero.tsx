@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Container, Title, Text, Group, Button, Box, Badge } from '@mantine/core';
+import { Container, Title, Text, Group, Button, Box } from '@mantine/core';
 import { IconEye, IconShield, IconBolt } from '@tabler/icons-react';
 
 const Hero = () => {
@@ -9,7 +9,7 @@ const Hero = () => {
       id="hero"
       style={{
         position: 'relative',
-        height: '100vh',
+        minHeight: '100svh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -125,51 +125,31 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <Group justify="center" mb="md">
-              <Badge
-                size="lg"
-                variant="gradient"
-                gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                className="glow-gold"
+            <Group justify="center" mb="sm">
+              <Box
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: 999,
+                  border: '1px solid rgba(255, 215, 0, 0.35)',
+                  background: 'rgba(255, 215, 0, 0.08)'
+                }}
               >
-                Українська технологія
-              </Badge>
+                <Text size="sm" style={{ letterSpacing: 0.3 }}>Сучасні прилади відеоспостереження</Text>
+              </Box>
             </Group>
-            
+
             <Title
               order={1}
-              size="4rem"
               style={{
-                fontWeight: 800,
-                marginBottom: '1.5rem',
-                lineHeight: 1.1,
+                fontWeight: 900,
+                marginBottom: '1rem',
+                lineHeight: 1.08,
                 color: 'white',
+                fontSize: 'clamp(2.2rem, 6vw, 4.2rem)'
               }}
-              visibleFrom="md"
+              ta="center"
             >
-              <Text component="span" className="gradient-text">
-                Сучасні перископи
-              </Text>
-              <br />
-              нового покоління
-            </Title>
-            
-            <Title
-              order={1}
-              size="2.5rem"
-              style={{
-                fontWeight: 800,
-                marginBottom: '1.5rem',
-                lineHeight: 1.1,
-                color: 'white',
-              }}
-              hiddenFrom="md"
-            >
-              <Text component="span" className="gradient-text">
-                Сучасні перископи
-              </Text>
-              <br />
-              нового покоління
+              <Text component="span" className="gradient-text">Перископи</Text> нового покоління
             </Title>
           </motion.div>
           
@@ -179,29 +159,15 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.4 }}
           >
             <Text
-              size="xl"
+              ta="center"
               style={{
-                marginBottom: '2rem',
-                color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: '1.25rem',
-                maxWidth: '60rem',
                 margin: '0 auto 2rem',
+                color: 'rgba(255, 255, 255, 0.88)',
+                fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+                maxWidth: 880,
               }}
-              visibleFrom="md"
             >
-              Інноваційні рішення для тактичного спостереження в польових умовах. 
-              Максимальна надійність та точність у найскладніших умовах.
-            </Text>
-            
-            <Text
-              size="lg"
-              style={{
-                marginBottom: '2rem',
-                color: 'rgba(255, 255, 255, 0.9)',
-              }}
-              hiddenFrom="md"
-            >
-              Інноваційні рішення для тактичного спостереження в польових умовах.
+              Інноваційні рішення для тактичного спостереження: висока точність, надійність та готовність до роботи в найскладніших умовах.
             </Text>
           </motion.div>
           
@@ -243,7 +209,7 @@ const Hero = () => {
                     color: 'var(--primary-gold)',
                   }}
                 >
-                  Переглянути ТХ
+                  Переглянути характеристики
                 </Button>
               </motion.div>
             </Group>
