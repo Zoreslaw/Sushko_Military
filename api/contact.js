@@ -1,7 +1,7 @@
-// CommonJS serverless function for Vercel to avoid ESM export issues
-const { Resend } = require('resend');
+// ESM serverless function for Vercel
+import { Resend } from 'resend';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -17,7 +17,6 @@ module.exports = async function handler(req, res) {
   try {
     const raw = req.body ?? {};
     const body = typeof raw === 'string' ? JSON.parse(raw || '{}') : raw;
-
     const { name, email, organization, message } = body;
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -30,7 +29,6 @@ module.exports = async function handler(req, res) {
     }
 
     const resend = new Resend(apiKey);
-
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'zoriksushko@gmail.com',
@@ -49,5 +47,5 @@ module.exports = async function handler(req, res) {
     console.error('Unhandled error:', e);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+}
 
