@@ -3,7 +3,6 @@ import { IconCheck, IconSparkles, IconGauge, IconBolt, IconAntennaBars5, IconDev
 
 // Images are expected in /public; keep strings to avoid build issues if assets are missing
 const CASE_IMG_SRC = '/svm-maxi-case.jpg';
-const SCHEME_IMG_SRC = '/svm-maxi-sheet-1.jpg';
 
 const ModelMK1 = () => {
   return (
