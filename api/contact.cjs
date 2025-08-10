@@ -1,7 +1,7 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { Resend } from 'resend';
+// CommonJS serverless function for Vercel to avoid ESM export issues
+const { Resend } = require('resend');
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const raw = (req.body ?? {}) as any;
+    const raw = req.body ?? {};
     const body = typeof raw === 'string' ? JSON.parse(raw || '{}') : raw;
 
     const { name, email, organization, message } = body;
@@ -41,16 +41,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (error) {
       console.error('Resend error:', error);
-      return res.status(502).json({
-        error: 'Failed to send email',
-        code: 'RESEND_SEND_FAILED',
-        hint: 'Verify sending domain and FROM address in Resend',
-      });
+      return res.status(502).json({ error: 'Failed to send email' });
     }
 
-    return res.status(200).json({ ok: true, id: data?.id });
-  } catch (e: any) {
+    return res.status(200).json({ ok: true, id: data && data.id });
+  } catch (e) {
     console.error('Unhandled error:', e);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+};
+
