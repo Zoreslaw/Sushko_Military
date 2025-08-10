@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     const text = `Нове звернення із сайту\n\nІм'я: ${name}\nE‑mail: ${email}\n${organization ? `Організація: ${organization}\n` : ''}\nПовідомлення:\n${message}`;
 
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'onboarding@svm-ml.com',
       to: recipient,
       subject,
       replyTo: email,
