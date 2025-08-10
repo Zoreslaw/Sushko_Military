@@ -21,6 +21,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const resend = new Resend(apiKey);
 
+    console.log(process.env.RESEND_API_KEY);
+
     const { data, error } = await resend.emails.send({
       from: 'Twoja Marka <noreply@twojadomena.com>', // użyj zweryfikowanej domeny
       to: 'zoriksushko@gmail.com',
