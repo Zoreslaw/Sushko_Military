@@ -31,9 +31,7 @@ const HowItWorks = () => {
     <Box
       component="section"
       id="how"
-      style={{
-        background: 'var(--military-dark)',
-      }}
+      className="bg-chevrons"
       py={120}
       px={{ base: 24, md: 80 }}
     >

@@ -38,7 +38,7 @@ const Features = () => {
     <Box
       component="section"
       id="features"
-      className="hex-pattern"
+      className="bg-topomap"
       py={120}
       px={{ base: 24, md: 80 }}
     >

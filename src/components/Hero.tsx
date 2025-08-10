@@ -130,17 +130,13 @@ const Hero = () => {
               size="4rem"
               style={{
                 fontWeight: 800,
-                marginBottom: '1.5rem',
+                marginBottom: '3rem',
                 lineHeight: 1.1,
                 color: 'white',
               }}
               visibleFrom="md"
             >
-              <Text component="span" className="gradient-text">
-                Сучасні перископи
-              </Text>
-              <br />
-              нового покоління
+              <span><span className="gradient-text">Сучасні перископи</span> нового покоління</span>
             </Title>
             
             <Title
@@ -148,7 +144,7 @@ const Hero = () => {
               size="2.5rem"
               style={{
                 fontWeight: 800,
-                marginBottom: '1.5rem',
+                marginBottom: '3rem',
                 lineHeight: 1.1,
                 color: 'white',
               }}

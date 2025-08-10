@@ -37,7 +37,7 @@ const FAQ = () => {
     <Box
       component="section"
       id="faq"
-      className="hex-pattern"
+      className="bg-topomap"
       py={120}
       px={{ base: 24, md: 80 }}
     >

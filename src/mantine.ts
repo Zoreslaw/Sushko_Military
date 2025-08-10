@@ -40,9 +40,9 @@ export const theme = createTheme({
       '#000d2a',
     ],
   },
-  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  fontFamily: 'Manrope, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   headings: {
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamily: 'Exo 2, Manrope, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     sizes: {
       h1: { fontSize: '3.5rem', lineHeight: '1.1' },
       h2: { fontSize: '2.5rem', lineHeight: '1.2' },

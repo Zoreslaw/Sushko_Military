@@ -174,25 +174,6 @@ const Contact = () => {
                     </Box>
                   </Group>
                 </Stack>
-                
-                <Paper
-                  p={32}
-                  radius="xl"
-                  className="glass"
-                  style={{
-                    height: 300,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Stack align="center" gap="md">
-                    <IconMapPin size={48} style={{ color: 'var(--primary-gold)' }} />
-                    <Text ta="center" c="dimmed" size="lg">
-                      Карта буде тут
-                    </Text>
-                  </Stack>
-                </Paper>
               </Stack>
             </motion.div>
           </Grid.Col>
