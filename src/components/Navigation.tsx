@@ -10,6 +10,7 @@ const Navigation = () => {
     { href: '#features', label: 'Переваги' },
     { href: '#how', label: 'Як це працює' },
     { href: '#specs', label: 'Технічні' },
+    { href: '#models', label: 'Моделі' },
     { href: '#cases', label: 'Кейси' },
     { href: '#faq', label: 'Часті запитання' },
     { href: '#contact', label: 'Контакти' },

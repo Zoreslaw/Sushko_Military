@@ -6,6 +6,8 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Specs from './components/Specs';
 import Cases from './components/Cases';
+import Models from './components/Models';
+import ModelOverlay from './components/ModelOverlay';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -19,10 +21,12 @@ function App() {
         <Features />
         <HowItWorks />
         <Specs />
+        <Models />
         <Cases />
         <FAQ />
         <Contact />
         <Footer />
+        <ModelOverlay />
       </div>
     </MantineProvider>
   );
