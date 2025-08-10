@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { Container, Title, Text, Group, Button, Box, Stack, Badge } from '@mantine/core';
+import { Container, Title, Text, Group, Button, Box, Badge } from '@mantine/core';
 import { IconEye, IconShield, IconBolt } from '@tabler/icons-react';
-import TextureBackground from './TextureBackground';
 
 const Hero = () => {
   return (

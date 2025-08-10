@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Container, Title, Text, Stack, Table, Button, Box, Badge, Group } from '@mantine/core';
 import { IconDownload, IconEye } from '@tabler/icons-react';
-import TextureBackground from './TextureBackground';
 
 const Specs = () => {
   const specifications = [

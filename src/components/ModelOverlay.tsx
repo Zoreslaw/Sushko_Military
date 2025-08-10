@@ -6,7 +6,7 @@ const ModelMK1 = lazy(() => import('../model-details/ModelMK1'));
 const ModelMK2 = lazy(() => import('../model-details/ModelMK2'));
 const ModelMK3 = lazy(() => import('../model-details/ModelMK3'));
 
-const slugToComponent: Record<string, React.LazyExoticComponent<() => JSX.Element>> = {
+const slugToComponent: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
   mk1: ModelMK1,
   mk2: ModelMK2,
   mk3: ModelMK3,

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Container, Title, Grid, Card, Text, Box, Stack, Badge, ActionIcon } from '@mantine/core';
 import { IconEye, IconShield, IconThermometer, IconLock } from '@tabler/icons-react';
-import TextureBackground from './TextureBackground';
 
 const Features = () => {
   const features = [
