@@ -4,7 +4,6 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
-import Specs from './components/Specs';
 import Cases from './components/Cases';
 import Models from './components/Models';
 import ModelOverlay from './components/ModelOverlay';
@@ -22,7 +21,6 @@ function App() {
         <Hero />
         <Features />
         <HowItWorks />
-        <Specs />
         <Models />
         <Cases />
         <FAQ />

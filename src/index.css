@@ -23,13 +23,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Modern hexagon pattern */
+/* Modern scalable pattern (pure CSS, pixel-perfect on any DPI) */
 .hex-pattern {
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(0, 87, 183, 0.1) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.05) 50%, transparent 60%);
-  background-size: 200px 200px, 300px 300px, 100px 100px;
+  /* Using multiple vector gradients as tiled layers to avoid raster pixelation */
+  background:
+    radial-gradient(80px 80px at 25% 25%, rgba(255, 215, 0, 0.08) 0 35%, transparent 36%) repeat,
+    radial-gradient(120px 120px at 75% 75%, rgba(0, 87, 183, 0.08) 0 35%, transparent 36%) repeat,
+    linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.05) 50%, transparent 60%) repeat;
+  background-size: 240px 240px, 320px 320px, 120px 120px;
+  background-position: 0 0, 0 0, 0 0;
 }
 
 /* Floating elements */
