@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const to = 'Zyp0754@gmail.com';
+    const to = 'zoreslav80@gmail.com';
     const subject = `Нове звернення з форми: ${name}${organization ? ` (${organization})` : ''}`;
 
     const html = `
@@ -33,7 +33,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const text = `Нове звернення з сайту\n\nІм'я: ${name}\nE-mail: ${email}\n${organization ? `Організація: ${organization}\n` : ''}\nПовідомлення:\n${message}`;
 
     await resend.emails.send({
-        from: 'Sushko Military <onboarding@resend.dev>',
+        from: 'SVM-ML <onboarding@resend.dev>',
         to,
         subject,
         replyTo: email,
