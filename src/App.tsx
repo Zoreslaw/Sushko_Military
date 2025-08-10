@@ -11,6 +11,8 @@ import ModelOverlay from './components/ModelOverlay';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
+import MarketingScripts from './components/MarketingScripts';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <FAQ />
         <Contact />
         <Footer />
+        <CookieConsent />
+        <MarketingScripts />
         <ModelOverlay />
       </div>
     </MantineProvider>
