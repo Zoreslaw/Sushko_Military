@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
     const resend = new Resend(apiKey);
 
-    const recipient = 'Zyp0754@gmail.com';
+    const recipient = 'svm.ml.0754@gmail.com';
     const subject = `Нове звернення: ${name}${organization ? ` (${organization})` : ''}`;
     const html = `
       <div style="font-family: Inter, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f5f7f6; padding:24px;">
