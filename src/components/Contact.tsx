@@ -102,11 +102,8 @@ const Contact = () => {
               <Stack gap="xl">
                 <Box>
                   <Title order={3} size="h3" mb="md" style={{ color: 'white' }}>
-                    Офіс і виробництво
+                    Контакти
                   </Title>
-                  <Text size="lg" c="dimmed" mb="xl">
-                    Київ, вул. Військова, 12
-                  </Text>
                 </Box>
                 
                 <Stack gap="lg">
@@ -122,7 +119,7 @@ const Contact = () => {
                     </ActionIcon>
                     <Box>
                       <Text fw={600} size="lg">Телефон</Text>
-                      <Text c="dimmed">+380 44 123 45 67</Text>
+                      <Text c="dimmed">+380 63 389 60 15</Text>
                     </Box>
                   </Group>
                   
@@ -138,7 +135,7 @@ const Contact = () => {
                     </ActionIcon>
                     <Box>
                       <Text fw={600} size="lg">Email</Text>
-                      <Text c="dimmed">info@periscope.ua</Text>
+                      <Text c="dimmed">svm.ml.0754@gmail.com</Text>
                     </Box>
                   </Group>
                   
@@ -170,7 +167,7 @@ const Contact = () => {
                     </ActionIcon>
                     <Box>
                       <Text fw={600} size="lg">Адреса</Text>
-                      <Text c="dimmed">Київ, вул. Військова, 12</Text>
+                      <Text c="dimmed">Київ, вул. Лебединська, 6</Text>
                     </Box>
                   </Group>
                 </Stack>

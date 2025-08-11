@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
 import { Container, Title, Text, Group, Button, Box } from '@mantine/core';
-import { IconEye, IconShield, IconBolt } from '@tabler/icons-react';
+import { IconEye, IconBolt, IconClockBolt } from '@tabler/icons-react';
 
 const Hero = () => {
   return (
-    <Box
+      <Box
       component="header"
       id="hero"
       style={{
         position: 'relative',
-        height: '100vh',
+          height: '100dvh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -35,6 +35,7 @@ const Hero = () => {
       
       {/* Floating decorative elements */}
       <Box
+        visibleFrom="md"
         className="floating"
         style={{
           position: 'absolute',
@@ -51,6 +52,7 @@ const Hero = () => {
       />
       
       <Box
+        visibleFrom="md"
         className="floating"
         style={{
           position: 'absolute',
@@ -80,6 +82,7 @@ const Hero = () => {
       
       {/* Additional blurred background elements */}
       <Box
+        visibleFrom="md"
         style={{
           position: 'absolute',
           top: '30%',
@@ -94,6 +97,7 @@ const Hero = () => {
       />
       
       <Box
+        visibleFrom="md"
         style={{
           position: 'absolute',
           bottom: '40%',
@@ -124,37 +128,39 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
+            
           >
             <Title
               order={1}
               size="4rem"
               style={{
                 fontWeight: 800,
-                marginBottom: '3rem',
+                marginBottom: '2.5rem',
                 lineHeight: 1.1,
                 color: 'white',
               }}
               visibleFrom="md"
             >
-              <span><span className="gradient-text">Сучасні перископи</span> нового покоління</span>
+              <span><span className="gradient-text">Сучасні</span> мобільні комплекси відеоспостереження</span>
             </Title>
             
             <Title
               order={1}
-              size="2.5rem"
               style={{
                 fontWeight: 800,
-                marginBottom: '3rem',
-                lineHeight: 1.1,
+                marginBottom: '2rem',
+                lineHeight: 1.12,
                 color: 'white',
+                fontSize: 'clamp(1.6rem, 8vw, 2.2rem)'
               }}
               hiddenFrom="md"
             >
-              <Text component="span" className="gradient-text">
-                Сучасні перископи
-              </Text>
-              <br />
-              нового покоління
+              <span className="gradient-text" style={{ display: 'inline-block', marginBottom: '0.6rem' }}>
+                Сучасні
+              </span>
+              <span style={{ display: 'block' }}>
+                мобільні комплекси  відеоспостереження
+              </span>
             </Title>
           </motion.div>
           
@@ -166,7 +172,7 @@ const Hero = () => {
             <Text
               size="xl"
               style={{
-                marginBottom: '2rem',
+                marginBottom: '1.5rem',
                 color: 'rgba(255, 255, 255, 0.9)',
                 fontSize: '1.25rem',
                 maxWidth: '60rem',
@@ -174,7 +180,7 @@ const Hero = () => {
               }}
               visibleFrom="md"
             >
-              Інноваційні рішення для тактичного спостереження в польових умовах. 
+              Інноваційні системи захисту тимчасових об'єктів та ділянок. 
               Максимальна надійність та точність у найскладніших умовах.
             </Text>
             
@@ -183,10 +189,12 @@ const Hero = () => {
               style={{
                 marginBottom: '2rem',
                 color: 'rgba(255, 255, 255, 0.9)',
+                fontSize: 'clamp(0.95rem, 3.8vw, 1.05rem)',
+                lineHeight: 1.4,
               }}
               hiddenFrom="md"
-            >
-              Інноваційні рішення для тактичного спостереження: висока точність, надійність та готовність до роботи.
+              >
+                Інноваційні системи захисту тимчасових об'єктів та ділянок: висока точність, надійність та готовність до роботи.
             </Text>
           </motion.div>
           
@@ -195,7 +203,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <Group justify="center" gap="lg" wrap="wrap" mb="xl">
+            <Group justify="center" gap="lg" wrap="wrap" mb='xl'>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -233,18 +241,18 @@ const Hero = () => {
               </motion.div>
             </Group>
             
-            <Group justify="center" gap="xl" wrap="wrap">
+            <Group justify="center" gap="lg" wrap="wrap">
               <Group gap="xs">
-                <IconShield size={20} style={{ color: 'var(--primary-gold)' }} />
-                <Text size="sm" c="dimmed">Військовий стандарт</Text>
+                <IconClockBolt size={20} style={{ color: 'var(--primary-gold)' }} />
+                <Text size="sm" c="dimmed">Швидке розгортання</Text>
               </Group>
               <Group gap="xs">
                 <IconEye size={20} style={{ color: 'var(--primary-gold)' }} />
-                <Text size="sm" c="dimmed">Дальність 500м</Text>
+                <Text size="sm" c="dimmed">Дальність спостереження до 1000м</Text>
               </Group>
               <Group gap="xs">
                 <IconBolt size={20} style={{ color: 'var(--primary-gold)' }} />
-                <Text size="sm" c="dimmed">IP67 захист</Text>
+                <Text size="sm" c="dimmed">Aвтономне живлення до 48 год</Text>
               </Group>
             </Group>
           </motion.div>

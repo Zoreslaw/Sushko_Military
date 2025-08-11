@@ -1,6 +1,6 @@
 import { Group, Button, Burger, Drawer, Stack, Text, Box, Container, ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconBrandWechat } from '@tabler/icons-react';
+import { IconVideoPlus } from '@tabler/icons-react';
 
 const Navigation = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -47,7 +47,7 @@ const Navigation = () => {
                 radius="xl"
                 className="glow-gold"
               >
-                <IconBrandWechat size={24} />
+                <IconVideoPlus size={24} />
               </ActionIcon>
               
               <Text
@@ -56,7 +56,7 @@ const Navigation = () => {
                 className="gradient-text"
                 visibleFrom="sm"
               >
-                Перископ
+                SVM
               </Text>
             </Group>
             
@@ -102,10 +102,10 @@ const Navigation = () => {
               gradient={{ from: 'gold', to: 'orange', deg: 45 }}
               radius="xl"
             >
-              <IconBrandWechat size={20} />
+              <IconVideoPlus size={20} />
             </ActionIcon>
             <Text size="lg" fw={700} className="gradient-text">
-              Перископ
+              SVM
             </Text>
           </Group>
         }

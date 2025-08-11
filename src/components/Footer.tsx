@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Container, Title, Text, Grid, Stack, Group, Box, Divider, ActionIcon } from '@mantine/core';
-import { IconBrandWechat, IconPhone, IconMail, IconMapPin } from '@tabler/icons-react';
+import { IconVideoPlus, IconPhone, IconMail, IconMapPin } from '@tabler/icons-react';
 
 const Footer = () => {
   return (
@@ -27,52 +27,51 @@ const Footer = () => {
                   <ActionIcon
                     size={48}
                     variant="gradient"
-                    gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                    radius="xl"
-                    className="glow-gold"
-                  >
-                    <IconBrandWechat size={24} />
-                  </ActionIcon>
-                  <Title order={3} size="h3" style={{ color: 'white' }}>
-                    Перископ
+                      gradient={{ from: 'gold', to: 'orange', deg: 45 }}
+                      radius="xl"
+                      className="glow-gold"
+                    >
+                      <IconVideoPlus size={24} />
+                    </ActionIcon>
+                    <Title order={3} size="h3" style={{ color: 'white' }}>
+                      SVM
+                    </Title>
+                  </Group>
+                  <Text size="lg" c="dimmed" lh={1.6}>
+                    Українські сучасні мобільні комплекси відеоспостереження.
+                  </Text>
+                </Stack>
+              </motion.div>
+            </Grid.Col>
+            
+            <Grid.Col span={{ base: 12, md: 4 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Stack gap="md">
+                  <Title order={4} size="h4" style={{ color: 'var(--primary-gold)' }}>
+                    Контакти
                   </Title>
-                </Group>
-                <Text size="lg" c="dimmed" lh={1.6}>
-                  Українські перископічні пристрої нового покоління для тактичного спостереження в польових умовах.
-                </Text>
-              </Stack>
-            </motion.div>
-          </Grid.Col>
-          
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Stack gap="md">
-                <Title order={4} size="h4" style={{ color: 'var(--primary-gold)' }}>
-                  Контакти
-                </Title>
-                <Stack gap="sm">
-                  <Group gap="sm">
-                    <IconPhone size={16} style={{ color: 'var(--primary-gold)' }} />
-                    <Text size="sm" c="dimmed">+380 44 123 45 67</Text>
-                  </Group>
-                  <Group gap="sm">
-                    <IconMail size={16} style={{ color: 'var(--primary-gold)' }} />
-                    <Text size="sm" c="dimmed">info@periscope.ua</Text>
-                  </Group>
-                  <Group gap="sm">
-                    <IconMapPin size={16} style={{ color: 'var(--primary-gold)' }} />
-                    <Text size="sm" c="dimmed">Київ, вул. Військова, 12</Text>
+                  <Stack gap="sm">
+                    <Group gap="sm">
+                      <IconPhone size={16} style={{ color: 'var(--primary-gold)' }} />
+                      <Text size="sm" c="dimmed">+380 63 389 60 15</Text>
+                    </Group>
+                    <Group gap="sm">
+                      <IconMail size={16} style={{ color: 'var(--primary-gold)' }} />
+                      <Text size="sm" c="dimmed">svm.ml.0754@gmail.com</Text>
+                    </Group>
+                    <Group gap="sm">
+                      <IconMapPin size={16} style={{ color: 'var(--primary-gold)' }} />
+                    <Text size="sm" c="dimmed">Київ, вул. Лебединська, 6</Text>
                   </Group>
                 </Stack>
               </Stack>
             </motion.div>
-          </Grid.Col>
-          
+          </Grid.Col>         
           <Grid.Col span={{ base: 12, md: 4 }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -105,7 +104,7 @@ const Footer = () => {
         >
           <Group justify="space-between" align="center" wrap="wrap">
             <Text size="sm" c="dimmed">
-              © 2025 Українські перископічні пристрої. Всі права захищені.
+              © 2025 Українські мобільні комплекси відеоспостереження. Всі права захищені.
             </Text>
             <Group gap="md">
               <Text size="sm" c="dimmed">Політика конфіденційності</Text>
