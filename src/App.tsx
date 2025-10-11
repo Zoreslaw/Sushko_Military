@@ -2,8 +2,6 @@ import { MantineProvider } from '@mantine/core';
 import { theme } from './mantine';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
 import Cases from './components/Cases';
 import Models from './components/Models';
 import ModelOverlay from './components/ModelOverlay';
@@ -19,8 +17,7 @@ function App() {
       <div className="relative bg-gradient-to-b from-military-dark to-military-green text-white font-sans overflow-x-hidden">
         <Navigation />
         <Hero />
-        <Features />
-        <HowItWorks />
+        {/* Features and HowItWorks removed as per layout update */}
         <Models />
         <Cases />
         <FAQ />

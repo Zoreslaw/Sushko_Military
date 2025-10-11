@@ -1,8 +1,13 @@
-import { Badge, Box, Card, Group, Image, List, SimpleGrid, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { Badge, Box, Card, Group, List, SimpleGrid, Stack, Text, ThemeIcon, Title } from '@mantine/core';
 import { IconCheck, IconSparkles, IconGauge, IconBolt, IconAntennaBars5, IconDeviceCctv, IconBattery3, IconTopologyStar3 } from '@tabler/icons-react';
+import ImageCarousel from '../components/ImageCarousel';
 
-// Images are expected in /public; keep strings to avoid build issues if assets are missing
-const CASE_IMG_SRC = '/svm-maxi-case.jpg';
+// Images for SVM-MAXI
+const SVM_IMAGES = [
+  '/svm-maxi-case.jpg',
+  '/svm-maxi-sheet-1.jpg',
+  '/svm-maxi-sheet-2.jpg'
+];
 
 const ModelMK1 = () => {
   return (
@@ -26,20 +31,11 @@ const ModelMK1 = () => {
 
         {/* Hero row: image + purpose */}
         <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
-          <Card className="glass overflow-hidden" padding="lg" withBorder radius="md">
-            {/* Make image full-bleed within the card */}
-            <Card.Section inheritPadding={false} p={0} withBorder={false}>
-              <Image
-                src={CASE_IMG_SRC}
-                alt="SVM‑MAXI кейс моніторингу"
-                fit="cover"
-
-                w="100%"
-                radius={0}
-                fallbackSrc="/vite.svg"
-              />
-            </Card.Section>
-          </Card>
+          <ImageCarousel
+            images={SVM_IMAGES}
+            altPrefix="SVM-MAXI"
+            fallbackSrc="/vite.svg"
+          />
 
           <Stack>
             <Card padding="lg" className="glass" radius="md" withBorder>

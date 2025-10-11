@@ -6,11 +6,17 @@ import { useMediaQuery } from '@mantine/hooks';
 const ModelMK1 = lazy(() => import('../model-details/ModelMK1'));
 const ModelMK2 = lazy(() => import('../model-details/ModelMK2'));
 const ModelMK3 = lazy(() => import('../model-details/ModelMK3'));
+const ModelTripod300 = lazy(() => import('../model-details/ModelTripod300'));
+const ModelTripod600 = lazy(() => import('../model-details/ModelTripod600'));
+const ModelTripod750 = lazy(() => import('../model-details/ModelTripod750'));
 
 const slugToComponent: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
   mk1: ModelMK1,
   mk2: ModelMK2,
   mk3: ModelMK3,
+  'tripod-300': ModelTripod300,
+  'tripod-600': ModelTripod600,
+  'tripod-750': ModelTripod750,
 };
 
 

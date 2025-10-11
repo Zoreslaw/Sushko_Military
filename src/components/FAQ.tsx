@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Container, Title, Text, Stack, Badge, Accordion, Box } from '@mantine/core';
+import { Container, Title, Stack, Badge, Accordion, Box } from '@mantine/core';
 
 
 const FAQ = () => {
@@ -65,14 +65,7 @@ const FAQ = () => {
             >
               Часті запитання
             </Title>
-            <Text
-              size="lg"
-              ta="center"
-              c="dimmed"
-              maw={600}
-            >
-              Відповіді на найбільш поширені питання про наше обладнання
-            </Text>
+            {/* Subtitle removed per layout update */}
           </Stack>
         </motion.div>
         

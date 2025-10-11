@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Container, Title, Text, Grid, Stack, Group, Box, Divider, ActionIcon } from '@mantine/core';
-import { IconVideoPlus, IconPhone, IconMail, IconMapPin } from '@tabler/icons-react';
+import { IconVideoPlus, IconPhone, IconMail } from '@tabler/icons-react';
 
 const Footer = () => {
   return (
@@ -10,7 +10,8 @@ const Footer = () => {
         background: 'var(--military-light)',
         borderTop: '1px solid rgba(255, 215, 0, 0.2)',
       }}
-      py={80}
+      pt={80}
+      pb={40}
       px={{ base: 24, md: 80 }}
     >
       <Container size="xl">
@@ -38,7 +39,7 @@ const Footer = () => {
                     </Title>
                   </Group>
                   <Text size="lg" c="dimmed" lh={1.6}>
-                    Українські сучасні мобільні комплекси відеоспостереження.
+                    Українські мобільні комплекси відеоспостереження.
                   </Text>
                 </Stack>
               </motion.div>
@@ -64,10 +65,7 @@ const Footer = () => {
                       <IconMail size={16} style={{ color: 'var(--primary-gold)' }} />
                       <Text size="sm" c="dimmed">svm.ml.0754@gmail.com</Text>
                     </Group>
-                    <Group gap="sm">
-                      <IconMapPin size={16} style={{ color: 'var(--primary-gold)' }} />
-                    <Text size="sm" c="dimmed">Київ, вул. Лебединська, 6</Text>
-                  </Group>
+                  {/* Адрес удалён по запросу */}
                 </Stack>
               </Stack>
             </motion.div>
@@ -85,7 +83,6 @@ const Footer = () => {
                 </Title>
                 <Stack gap="sm">
                   <Text size="sm" c="dimmed">Технічна підтримка 24/7</Text>
-                  <Text size="sm" c="dimmed">Гарантія 3 роки</Text>
                   <Text size="sm" c="dimmed">Навчання персоналу</Text>
                   <Text size="sm" c="dimmed">Сервісне обслуговування</Text>
                 </Stack>
@@ -102,15 +99,11 @@ const Footer = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <Group justify="space-between" align="center" wrap="wrap">
-            <Text size="sm" c="dimmed">
-              © 2025 Українські мобільні комплекси відеоспостереження. Всі права захищені.
-            </Text>
-            <Group gap="md">
-              <Text size="sm" c="dimmed">Політика конфіденційності</Text>
-              <Text size="sm" c="dimmed">Умови використання</Text>
+            <Group justify="center" align="center" wrap="wrap">
+              <Text size="sm" c="dimmed">
+                © 2025 Українські комплекси відеоспостереження. Всі права захищені.
+              </Text>
             </Group>
-          </Group>
         </motion.div>
       </Container>
     </Box>

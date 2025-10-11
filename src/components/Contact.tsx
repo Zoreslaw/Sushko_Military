@@ -15,7 +15,7 @@ import {
   ActionIcon
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconPhone, IconMail, IconClock, IconMapPin, IconSend } from '@tabler/icons-react';
+import { IconPhone, IconMail, IconClock, IconSend } from '@tabler/icons-react';
 
 const Contact = () => {
   const form = useForm({
@@ -23,7 +23,6 @@ const Contact = () => {
     initialValues: {
       name: '',
       email: '',
-      organization: '',
       message: ''
     },
     validate: {
@@ -80,14 +79,7 @@ const Contact = () => {
             >
               Зв'яжіться з нами
             </Title>
-            <Text
-              size="lg"
-              ta="center"
-              c="dimmed"
-              maw={600}
-            >
-              Отримайте консультацію та індивідуальну пропозицію для вашого проекту
-            </Text>
+            {/* Subtitle removed per layout update */}
           </Stack>
         </motion.div>
 
@@ -155,21 +147,7 @@ const Contact = () => {
                     </Box>
                   </Group>
                   
-                  <Group gap="md">
-                    <ActionIcon
-                      size={48}
-                      variant="gradient"
-                      gradient={{ from: 'blue', to: 'cyan', deg: 45 }}
-                      radius="xl"
-                      className="glow-blue"
-                    >
-                      <IconMapPin size={24} />
-                    </ActionIcon>
-                    <Box>
-                      <Text fw={600} size="lg">Адреса</Text>
-                      <Text c="dimmed">Київ, вул. Лебединська, 6</Text>
-                    </Box>
-                  </Group>
+                  {/* Адреса удалена по запросу */}
                 </Stack>
               </Stack>
             </motion.div>
@@ -217,24 +195,6 @@ const Contact = () => {
                       required
                       size="md"
                       {...form.getInputProps('email')}
-                      styles={{
-                        input: {
-                          background: 'rgba(255, 255, 255, 0.9)',
-                          color: 'black',
-                          border: 'none',
-                        },
-                        label: {
-                          color: 'white',
-                          fontWeight: 600,
-                        }
-                      }}
-                    />
-                    
-                    <TextInput
-                      label="Організація"
-                      placeholder="Назва організації"
-                      size="md"
-                      {...form.getInputProps('organization')}
                       styles={{
                         input: {
                           background: 'rgba(255, 255, 255, 0.9)',

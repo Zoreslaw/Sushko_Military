@@ -141,7 +141,7 @@ const Hero = () => {
               }}
               visibleFrom="md"
             >
-              <span><span className="gradient-text">Сучасні</span> мобільні комплекси відеоспостереження</span>
+              <span>Мобільні комплекси відеоспостереження</span>
             </Title>
             
             <Title
@@ -155,11 +155,9 @@ const Hero = () => {
               }}
               hiddenFrom="md"
             >
-              <span className="gradient-text" style={{ display: 'inline-block', marginBottom: '0.6rem' }}>
-                Сучасні
-              </span>
+
               <span style={{ display: 'block' }}>
-                мобільні комплекси  відеоспостереження
+                Мобільні комплекси  відеоспостереження
               </span>
             </Title>
           </motion.div>
@@ -169,33 +167,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <Text
-              size="xl"
-              style={{
-                marginBottom: '1.5rem',
-                color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: '1.25rem',
-                maxWidth: '60rem',
-                margin: '0 auto 2rem',
-              }}
-              visibleFrom="md"
-            >
-              Інноваційні системи захисту тимчасових об'єктів та ділянок. 
-              Максимальна надійність та точність у найскладніших умовах.
-            </Text>
+            {/* Subtitle removed per layout update */}
             
-            <Text
-              size="lg"
-              style={{
-                marginBottom: '2rem',
-                color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: 'clamp(0.95rem, 3.8vw, 1.05rem)',
-                lineHeight: 1.4,
-              }}
-              hiddenFrom="md"
-              >
-                Інноваційні системи захисту тимчасових об'єктів та ділянок: висока точність, надійність та готовність до роботи.
-            </Text>
+            {/* Mobile subtitle removed */}
           </motion.div>
           
           <motion.div
@@ -224,20 +198,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  color="gold"
-                  onClick={() => document.querySelector('#specs')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="hover-lift"
-                  leftSection={<IconEye size={20} />}
-                  style={{
-                    borderColor: 'var(--primary-gold)',
-                    color: 'var(--primary-gold)',
-                  }}
-                >
-                  Переглянути ТХ
-                </Button>
+                {/* Secondary button removed */}
               </motion.div>
             </Group>
             
