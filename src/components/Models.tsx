@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Card, Image, Badge, Group, Text, Button, Container, SimpleGrid, Title, Box, Stack } from '@mantine/core';
+import { Card, Badge, Group, Text, Button, Container, SimpleGrid, Title, Box, Stack } from '@mantine/core';
 import { motion } from 'framer-motion';
 import { IconArrowRight } from '@tabler/icons-react';
 import previewImg from '../assets/OR4EJM0.jpg';
