@@ -4,9 +4,9 @@ import ImageCarousel from '../components/ImageCarousel';
 
 // Images for the tripod-750 (temporary placeholders)
 const TRIPOD_IMAGES = [
-  '/tripod-300-1.jpg',
-  '/tripod-300-2.jpg',
-  '/tripod-300-3.jpg'
+  '/tripod-750-1.jpg',
+  '/tripod-750-2.jpg',
+  '/tripod-750-3.jpg'
 ];
 
 const ModelTripod750 = () => {
