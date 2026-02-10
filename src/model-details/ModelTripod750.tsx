@@ -1,125 +1,114 @@
-import { Badge, Box, Card, Group, List, SimpleGrid, Stack, Text, ThemeIcon, Title } from '@mantine/core';
-import { IconCheck, IconSparkles, IconGauge, IconBolt, IconDeviceCctv } from '@tabler/icons-react';
 import ImageCarousel from '../components/ImageCarousel';
+import { Gauge, Sparkles, Camera, Bolt, Check } from '../icons';
+import s from './shared.module.css';
 
-// Images for the tripod-750 (temporary placeholders)
 const TRIPOD_IMAGES = [
   'tripod-750-1.jpg',
   'tripod-750-2.jpg',
-  'tripod-750-3.jpg'
+  'tripod-750-3.jpg',
 ];
 
 const ModelTripod750 = () => {
   return (
-    <Box>
-      <Stack gap="lg">
-        {/* Header */}
-        <Group justify="space-between" align="flex-start">
-          <div>
-            <Badge size="lg" variant="gradient" gradient={{ from: 'gold', to: 'orange', deg: 45 }}>Tripod-750</Badge>
-            <Title order={2} mt="sm">Професійний штатив</Title>
-            <Text c="dimmed" mt="xs">
-              Високий штатив з підвищеною вантажопідйомністю
-            </Text>
+    <div className={s.wrapper}>
+      {/* Header */}
+      <div className={s.headerRow}>
+        <div>
+          <span className={s.badge}>Tripod-750</span>
+          <h2 className={s.title}>Професійний штатив</h2>
+          <p className={s.description}>
+            Високий штатив з підвищеною вантажопідйомністю
+          </p>
+        </div>
+        <div className={s.headerBadges}>
+          <span className={s.headerBadge}>75-130 см</span>
+          <span className={s.headerBadge}>Ø 100 см</span>
+          <span className={s.headerBadge}>20 кг навантаження</span>
+          <span className={s.headerBadge}>1800 грн</span>
+        </div>
+      </div>
+
+      {/* Hero: image + specs */}
+      <div className={s.heroGrid}>
+        <ImageCarousel images={TRIPOD_IMAGES} altPrefix="Tripod-750 фото" fallbackSrc="/vite.svg" autoPlay autoPlayInterval={5000} />
+
+        <div className={s.infoStack}>
+          <div className={s.card}>
+            <div className={s.cardHeader}>
+              <div className={s.cardIcon}><Gauge size={18} /></div>
+              <span className={s.cardTitle}>Технічні характеристики</span>
+            </div>
+            <div className={s.specGrid}>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Робоча висота</span>
+                <span className={s.specValue}>75-130 см</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Діаметр розкладеного</span>
+                <span className={s.specValue}>100 см</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Навантаження</span>
+                <span className={s.specValue}>20 кг</span>
+              </div>
+            </div>
           </div>
-          <Group gap="sm">
-            <Badge variant="light" color="gold">75-130 см</Badge>
-            <Badge variant="light" color="gold">Ø 100 см</Badge>
-            <Badge variant="light" color="gold">20 кг навантаження</Badge>
-            <Badge variant="light" color="gold">1800 грн</Badge>
-          </Group>
-        </Group>
 
-        {/* Hero row: image slider + specifications */}
-        <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
-          <ImageCarousel
-            images={TRIPOD_IMAGES}
-            altPrefix="Tripod-750 фото"
-            fallbackSrc="/vite.svg"
-            autoPlay
-            autoPlayInterval={5000}
-          />
+          <div className={s.card}>
+            <div className={s.cardHeader}>
+              <div className={s.cardIcon}><Sparkles size={18} /></div>
+              <span className={s.cardTitle}>Переваги</span>
+            </div>
+            <ul className={s.checkList}>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Стабільність при високих навантаженнях</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Регулювання висоти 75–130 см</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Розширена опора: діаметр 100 см</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-          <Stack>
-            <Card padding="lg" className="glass" radius="md" withBorder>
-              <Group>
-                <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconGauge size={18} /></ThemeIcon>
-                <Text fw={600}>Технічні характеристики</Text>
-              </Group>
-              <SimpleGrid cols={1} spacing="md" mt="sm">
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Робоча висота</Text>
-                  <Text fw={600}>75-130 см</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Діаметр розкладеного</Text>
-                  <Text fw={600}>100 см</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Навантаження</Text>
-                  <Text fw={600}>20 кг</Text>
-                </Group>
-              </SimpleGrid>
-            </Card>
+      {/* Scenarios */}
+      <div className={s.card}>
+        <div className={s.cardHeader}>
+          <div className={s.cardIcon}><Camera size={18} /></div>
+          <span className={s.cardTitle}>Сценарії використання</span>
+        </div>
+        <div className={s.scenarioGrid}>
+          <div>
+            <div className={s.scenarioTitle}>Тяжке обладнання</div>
+            <div className={s.scenarioDesc}>Камери, освітлення, комунікаційні модулі</div>
+          </div>
+          <div>
+            <div className={s.scenarioTitle}>Складні умови</div>
+            <div className={s.scenarioDesc}>Висока стабільність на різних поверхнях</div>
+          </div>
+        </div>
+      </div>
 
-            <Card padding="lg" className="glass" radius="md" withBorder>
-              <Group>
-                <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconSparkles size={18} /></ThemeIcon>
-                <Text fw={600}>Переваги</Text>
-              </Group>
-              <List spacing="xs" mt="sm" icon={<ThemeIcon color="gold" variant="light" size={20} radius="xl"><IconCheck size={14} /></ThemeIcon>}>
-                <List.Item>Стабільність при високих навантаженнях</List.Item>
-                <List.Item>Регулювання висоти 75–130 см</List.Item>
-                <List.Item>Розширена опора: діаметр 100 см</List.Item>
-              </List>
-            </Card>
-          </Stack>
-        </SimpleGrid>
-
-        {/* Usage scenarios */}
-        <Card padding="lg" className="glass" radius="md" withBorder>
-          <Group mb="sm">
-            <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconDeviceCctv size={18} /></ThemeIcon>
-            <Text fw={600}>Сценарії використання</Text>
-          </Group>
-          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
-            <Box>
-              <Text fw={600} mb="xs">Тяжке обладнання</Text>
-              <Text size="sm" c="dimmed">Камери, освітлення, комунікаційні модулі</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Польові умови</Text>
-              <Text size="sm" c="dimmed">Висока стабільність на різних поверхнях</Text>
-            </Box>
-          </SimpleGrid>
-        </Card>
-
-        {/* Price and ordering */}
-        <Card padding="lg" className="glass" radius="md" withBorder>
-          <Group mb="sm">
-            <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconBolt size={18} /></ThemeIcon>
-            <Text fw={600}>Замовлення та доставка</Text>
-          </Group>
-          <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg">
-            <Box>
-              <Text fw={600} mb="xs" style={{ color: 'var(--primary-gold)' }}>Ціна</Text>
-              <Text size="lg" fw={700}>1 800 грн</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Термін виготовлення</Text>
-              <Text size="sm" c="dimmed">1-2 тижні</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Доставка</Text>
-              <Text size="sm" c="dimmed">По всій Україні</Text>
-            </Box>
-          </SimpleGrid>
-        </Card>
-      </Stack>
-    </Box>
+      {/* Price */}
+      <div className={s.card}>
+        <div className={s.cardHeader}>
+          <div className={s.cardIcon}><Bolt size={18} /></div>
+          <span className={s.cardTitle}>Замовлення та доставка</span>
+        </div>
+        <div className={s.priceGrid}>
+          <div>
+            <div className={s.priceLabel}>Ціна</div>
+            <div className={s.priceValue}>1 800 грн</div>
+          </div>
+          <div>
+            <div className={s.priceSubLabel}>Термін виготовлення</div>
+            <div className={s.priceSubValue}>1-2 тижні</div>
+          </div>
+          <div>
+            <div className={s.priceSubLabel}>Доставка</div>
+            <div className={s.priceSubValue}>По всій Україні</div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default ModelTripod750;
-
-

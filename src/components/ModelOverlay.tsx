@@ -1,24 +1,19 @@
-import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
-import { Modal, Drawer, Box, ScrollArea } from '@mantine/core';
-import { useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Suspense, lazy, useEffect, useMemo, useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from '../icons';
+import styles from './ModelOverlay.module.css';
 
 const ModelMK1 = lazy(() => import('../model-details/ModelMK1'));
-const ModelMK2 = lazy(() => import('../model-details/ModelMK2'));
-const ModelMK3 = lazy(() => import('../model-details/ModelMK3'));
 const ModelTripod300 = lazy(() => import('../model-details/ModelTripod300'));
 const ModelTripod600 = lazy(() => import('../model-details/ModelTripod600'));
 const ModelTripod750 = lazy(() => import('../model-details/ModelTripod750'));
 
 const slugToComponent: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
   mk1: ModelMK1,
-  mk2: ModelMK2,
-  mk3: ModelMK3,
   'tripod-300': ModelTripod300,
   'tripod-600': ModelTripod600,
   'tripod-750': ModelTripod750,
 };
-
 
 const parseSlugFromHash = (hash: string): string | null => {
   if (!hash) return null;
@@ -34,10 +29,8 @@ const closeOverlay = () => {
 };
 
 const ModelOverlay = () => {
-  const theme = useMantineTheme();
-  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
   const [slug, setSlug] = useState<string | null>(() => parseSlugFromHash(window.location.hash));
-  const Component = useMemo(() => (slug ? slugToComponent[slug] : null), [slug]);
+  const Component = useMemo(() => (slug ? slugToComponent[slug] ?? null : null), [slug]);
 
   useEffect(() => {
     const onHashChange = () => setSlug(parseSlugFromHash(window.location.hash));
@@ -45,62 +38,65 @@ const ModelOverlay = () => {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  const opened = Boolean(Component);
-  if (!opened) return null;
+  // Lock body scroll when open
+  useEffect(() => {
+    if (Component) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [Component]);
 
-  const content = (
-    <Suspense
-      fallback={
-        <Box p="xl" style={{ display: 'flex', justifyContent: 'center' }} />
-      }
-    >
-      <ScrollArea.Autosize
-        offsetScrollbars
-        scrollbarSize={10}
-        styles={{
-          viewport: {
-            padding: '16px',
-          },
-        }}
-      >
-        {Component ? <Component /> : null}
-      </ScrollArea.Autosize>
-    </Suspense>
-  );
+  // Close on Escape
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') closeOverlay();
+  }, []);
 
-  return isMobile ? (
-    <Drawer
-      opened={opened}
-      onClose={closeOverlay}
-      size="100%"
-      padding={0}
-      title={null}
-      zIndex={2000}
-      styles={{
-        content: { padding: 0 },
-        body: { padding: 0 },
-        header: { display: 'none' },
-      }}
-    >
-      {content}
-    </Drawer>
-  ) : (
-    <Modal
-      opened={opened}
-      onClose={closeOverlay}
-      size="80%"
-      centered={false}
-      padding={0}
-      title={null}
-      zIndex={2000}
-      styles={{
-        content: { padding: 0 },
-        body: { padding: 0 },
-        header: { display: 'none' },
-      }}
-    >
-      {content}
-    </Modal>
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  return (
+    <AnimatePresence>
+      {Component && (
+        <motion.div
+          className={styles.backdrop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={(e) => { if (e.target === e.currentTarget) closeOverlay(); }}
+        >
+          <motion.div
+            className={styles.panel}
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.97 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          >
+            <button
+              className={styles.closeBtn}
+              onClick={closeOverlay}
+              aria-label="Закрити"
+            >
+              <X size={22} />
+            </button>
+
+            <div className={styles.scrollArea}>
+              <Suspense
+                fallback={
+                  <div className={styles.loading} />
+                }
+              >
+                <Component />
+              </Suspense>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

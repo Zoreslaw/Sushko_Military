@@ -1,145 +1,117 @@
-import { Group, Button, Burger, Drawer, Stack, Text, Box, Container, ActionIcon } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconVideoPlus } from '@tabler/icons-react';
+import { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { SvmLogoMark, Menu, X } from '../icons';
+import styles from './Navigation.module.css';
+
+const navItems = [
+  { href: '#hero', label: 'Головна' },
+  { href: '#models', label: 'Моделі' },
+  { href: '#faq', label: 'Часті запитання' },
+  { href: '#contact', label: 'Контакти' },
+];
 
 const Navigation = () => {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, setOpened] = useState(false);
 
-  const navItems = [
-    { href: '#hero', label: 'Головна' },
-    { href: '#models', label: 'Моделі' },
-    { href: '#cases', label: 'Кейси' },
-    { href: '#faq', label: 'Часті запитання' },
-    { href: '#contact', label: 'Контакти' },
-  ];
-
-  const scrollToSection = (href: string) => {
+  const scrollToSection = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    close();
-  };
+    setOpened(false);
+  }, []);
 
   return (
     <>
-      <Box
-        component="nav"
-        className="glass-dark"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          borderBottom: '1px solid rgba(255, 215, 0, 0.2)',
-        }}
-      >
-        <Container size="xl" py="md">
-          <Group justify="space-between" align="center">
-            <Group gap="lg">
-              <ActionIcon
-                size={48}
-                variant="gradient"
-                gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                radius="xl"
-                className="glow-gold"
+      <nav className={styles.nav}>
+        <div className={styles.container}>
+          <button
+            className={styles.brand}
+            onClick={() => scrollToSection('#hero')}
+            aria-label="На головну"
+          >
+            <SvmLogoMark size={36} className={styles.logoMark} />
+            <div className={styles.logoTextGroup}>
+              <span className={styles.logoText}>SVM</span>
+              <span className={styles.logoSub}>SYSTEMS</span>
+            </div>
+          </button>
+
+          <div className={styles.desktopLinks}>
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                className={styles.navLink}
+                onClick={() => scrollToSection(item.href)}
               >
-                <IconVideoPlus size={24} />
-              </ActionIcon>
-              
-              <Text
-                size="xl"
-                fw={700}
-                className="gradient-text"
-                visibleFrom="sm"
-              >
-                SVM
-              </Text>
-            </Group>
-            
-            <Group gap="md" visibleFrom="lg">
-              {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="subtle"
-                  color="white"
-                  onClick={() => scrollToSection(item.href)}
-                  style={{ 
-                    fontWeight: 500,
-                    transition: 'all 0.3s ease',
-                  }}
-                  className="hover-lift"
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className={styles.burger}
+            onClick={() => setOpened(true)}
+            aria-label="Відкрити меню"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {opened && (
+          <motion.div
+            className={styles.overlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <motion.div
+              className={styles.drawer}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 250 }}
+            >
+              <div className={styles.drawerHeader}>
+                <div className={styles.drawerBrand}>
+                  <SvmLogoMark size={32} className={styles.logoMark} />
+                  <div className={styles.logoTextGroup}>
+                    <span className={styles.logoText}>SVM</span>
+                    <span className={styles.logoSub}>SYSTEMS</span>
+                  </div>
+                </div>
+                <button
+                  className={styles.closeBtn}
+                  onClick={() => setOpened(false)}
+                  aria-label="Закрити меню"
                 >
-                  {item.label}
-                </Button>
-              ))}
-            </Group>
+                  <X size={24} />
+                </button>
+              </div>
 
-            <Burger
-              opened={opened}
-              onClick={open}
-              hiddenFrom="lg"
-              color="white"
-              size="md"
-            />
-          </Group>
-        </Container>
-      </Box>
-
-      <Drawer
-        opened={opened}
-        onClose={close}
-        size="100%"
-        padding="xl"
-        title={
-          <Group gap="md">
-            <ActionIcon
-              size={40}
-              variant="gradient"
-              gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-              radius="xl"
-            >
-              <IconVideoPlus size={20} />
-            </ActionIcon>
-            <Text size="lg" fw={700} className="gradient-text">
-              SVM
-            </Text>
-          </Group>
-        }
-        hiddenFrom="lg"
-        zIndex={1000}
-        styles={{
-          content: {
-            background: 'var(--military-dark)',
-          },
-          header: {
-            background: 'var(--military-dark)',
-            borderBottom: '1px solid rgba(255, 215, 0, 0.2)',
-          },
-        }}
-      >
-        <Stack gap="xl" align="center" justify="center" h="100%">
-          {navItems.map((item) => (
-            <Button
-              key={item.href}
-              variant="subtle"
-              color="white"
-              size="xl"
-              onClick={() => scrollToSection(item.href)}
-              style={{ 
-                fontWeight: 500,
-                fontSize: '1.25rem',
-              }}
-              className="hover-lift"
-            >
-              {item.label}
-            </Button>
-          ))}
-        </Stack>
-      </Drawer>
+              <div className={styles.drawerLinks}>
+                {navItems.map((item, i) => (
+                  <motion.button
+                    key={item.href}
+                    className={styles.drawerLink}
+                    onClick={() => scrollToSection(item.href)}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.06 }}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
 
-export default Navigation; 
+export default Navigation;

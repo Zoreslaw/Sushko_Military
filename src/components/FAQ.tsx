@@ -1,130 +1,108 @@
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown } from '../icons';
+import styles from './FAQ.module.css';
 
-import { motion } from 'framer-motion';
-import { Container, Title, Stack, Badge, Accordion, Box } from '@mantine/core';
+const faqs = [
+  {
+    question: 'Чи можна підключити кілька камер одночасно?',
+    answer: 'Так, система підтримує підключення до 4 камер одночасно з можливістю перемикання між ними в реальному часі. Всі камери синхронізуються та передають дані централізовано.',
+  },
+  {
+    question: 'Яка роздільна здатність відео та частота кадрів?',
+    answer: 'Система забезпечує Full HD 1080p роздільну здатність при 30 кадрах на секунду. При необхідності можна налаштувати різні режими якості для оптимізації трафіку.',
+  },
+  {
+    question: 'Чи працює обладнання в темряві та умовах низької освітленості?',
+    answer: 'Так, камери мають вбудовану ІЧ-підсвітку для роботи в умовах низької освітленості. Додатково доступні зовнішні ІЧ-прожектори для роботи в повній темряві.',
+  },
+  {
+    question: 'Який термін гарантії та технічної підтримки?',
+    answer: 'Надається 3 роки гарантії на всі компоненти системи. Технічна підтримка доступна 24/7 з можливістю дистанційного налаштування та діагностики обладнання.',
+  },
+  {
+    question: 'Чи можна інтегрувати з існуючими системами спостереження?',
+    answer: 'Система має відкриті API та підтримує стандартні протоколи інтеграції. Можна легко підключити до існуючих центрів спостереження та систем керування.',
+  },
+  {
+    question: 'Які вимоги до мережевої інфраструктури?',
+    answer: 'Для роботи потрібен стабільний інтернет зі швидкістю від 5 Мбіт/с. Система підтримує як проводне підключення через Ethernet, так і бездротове через Wi-Fi або 4G.',
+  },
+];
 
+const itemFade = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: i * 0.07, ease: 'easeOut' as const },
+  }),
+};
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-
-  const faqs = [
-    {
-      question: 'Чи можна підключити кілька камер одночасно?',
-      answer: 'Так, система підтримує підключення до 4 камер одночасно з можливістю перемикання між ними в реальному часі. Всі камери синхронізуються та передають дані централізовано.'
-    },
-    {
-      question: 'Яка роздільна здатність відео та частота кадрів?',
-      answer: 'Система забезпечує Full HD 1080p роздільну здатність при 30 кадрах на секунду. При необхідності можна налаштувати різні режими якості для оптимізації трафіку.'
-    },
-    {
-      question: 'Чи працює обладнання в темряві та умовах низької освітленості?',
-      answer: 'Так, перископи мають вбудовану ІЧ-підсвітку для роботи в умовах низької освітленості. Додатково доступні зовнішні ІЧ-прожектори для роботи в повній темряві.'
-    },
-    {
-      question: 'Який термін гарантії та технічної підтримки?',
-      answer: 'Надається 3 роки гарантії на всі компоненти системи. Технічна підтримка доступна 24/7 з можливістю дистанційного налаштування та діагностики обладнання.'
-    },
-    {
-      question: 'Чи можна інтегрувати з існуючими системами спостереження?',
-      answer: 'Система має відкриті API та підтримує стандартні протоколи інтеграції. Можна легко підключити до існуючих центрів спостереження та систем керування.'
-    },
-    {
-      question: 'Які вимоги до мережевої інфраструктури?',
-      answer: 'Для роботи потрібен стабільний інтернет зі швидкістю від 5 Мбіт/с. Система підтримує як проводне підключення через Ethernet, так і бездротове через Wi-Fi або 4G.'
-    }
-  ];
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
 
   return (
-    <Box
-      component="section"
-      id="faq"
-      className="bg-topomap"
-      py={120}
-      px={{ base: 24, md: 80 }}
-    >
-      <Container size="xl">
+    <section id="faq" className={styles.section}>
+      <div className={styles.container}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className={styles.header}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5 }}
         >
-          <Stack align="center" gap="md" mb={80}>
-            <Badge
-              size="lg"
-              variant="gradient"
-              gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-              className="glow-gold"
-            >
-              FAQ
-            </Badge>
-            <Title
-              order={2}
-              size="3rem"
-              ta="center"
-              style={{ color: 'white' }}
-            >
-              Часті запитання
-            </Title>
-            {/* Subtitle removed per layout update */}
-          </Stack>
+          <span className={styles.badge}>FAQ</span>
+          <h2 className={styles.title}>Часті запитання</h2>
         </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <Box className="glass" p="xl" style={{ border: '1px solid rgba(255, 215, 0, 0.2)', borderRadius: 'var(--mantine-radius-xl)' }}>
-            <Accordion
-              variant="separated"
-              radius="md"
-              styles={{
-                item: {
-                  border: '1px solid rgba(255, 215, 0, 0.2)',
-                  borderRadius: 'var(--mantine-radius-md)',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                },
-                control: {
-                  color: 'white',
-                  fontWeight: 600,
-                  fontSize: '1.1rem',
-                  padding: 'var(--mantine-spacing-lg)',
-                },
-                content: {
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  padding: 'var(--mantine-spacing-lg)',
-                  lineHeight: 1.6,
-                },
-                chevron: {
-                  color: 'var(--primary-gold)',
-                }
-              }}
+
+        <div className={styles.list}>
+          {faqs.map((faq, idx) => (
+            <motion.div
+              key={idx}
+              className={`${styles.item} ${openIndex === idx ? styles.itemOpen : ''}`}
+              custom={idx}
+              variants={itemFade}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-20px' }}
             >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Accordion.Item value={`faq-${index}`}>
-                    <Accordion.Control>
-                      {faq.question}
-                    </Accordion.Control>
-                    <Accordion.Panel>
+              <button
+                className={styles.question}
+                onClick={() => toggle(idx)}
+                aria-expanded={openIndex === idx}
+              >
+                <span>{faq.question}</span>
+                <ChevronDown
+                  size={20}
+                  className={`${styles.chevron} ${openIndex === idx ? styles.chevronOpen : ''}`}
+                />
+              </button>
+              <AnimatePresence>
+                {openIndex === idx && (
+                  <motion.div
+                    className={styles.answer}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <div className={styles.answerInner}>
                       {faq.answer}
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </motion.div>
-              ))}
-            </Accordion>
-          </Box>
-        </motion.div>
-      </Container>
-    </Box>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default FAQ; 
+export default FAQ;

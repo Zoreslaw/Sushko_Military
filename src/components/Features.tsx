@@ -1,142 +1,86 @@
 import { motion } from 'framer-motion';
-import { Container, Title, Grid, Card, Text, Box, Stack, Badge, ActionIcon } from '@mantine/core';
-import { IconEye, IconShield, IconThermometer, IconLock } from '@tabler/icons-react';
+import { Battery, Eye, Bolt, Camera } from '../icons';
+import styles from './Features.module.css';
 
-const Features = () => {
-  const features = [
-    {
-      icon: IconEye,
-      title: 'Дальність до 500 м',
-      description: 'Чітке зображення навіть на великій відстані з високою роздільною здатністю.',
-      color: 'gold',
-      gradient: { from: 'gold', to: 'orange', deg: 45 }
-    },
-    {
-      icon: IconShield,
-      title: 'IP67: Захист',
-      description: 'Повний пиловологозахист для роботи в найскладніших умовах.',
-      color: 'blue',
-      gradient: { from: 'blue', to: 'cyan', deg: 45 }
-    },
-    {
-      icon: IconThermometer,
-      title: 'Робота –40…+60 °C',
-      description: 'Надійно працює в будь-яких кліматичних умовах та екстремальних температурах.',
-      color: 'gold',
-      gradient: { from: 'gold', to: 'orange', deg: 45 }
-    },
-    {
-      icon: IconLock,
-      title: 'Шифрування',
-      description: 'Захист даних за військовими стандартами з високим рівнем безпеки.',
-      color: 'blue',
-      gradient: { from: 'blue', to: 'cyan', deg: 45 }
-    }
-  ];
+const features = [
+  {
+    Icon: Battery,
+    number: '48',
+    unit: 'годин',
+    title: 'Автономне живлення',
+    desc: 'Безперервна робота без підзарядки в автономному режимі',
+  },
+  {
+    Icon: Eye,
+    number: '1000',
+    unit: 'м',
+    title: 'Дальність огляду',
+    desc: 'Контроль території на великих відстанях з високою чіткістю',
+  },
+  {
+    Icon: Bolt,
+    number: '5',
+    unit: 'хв',
+    title: 'Швидке розгортання',
+    desc: 'Повна готовність системи за лічені хвилини',
+  },
+  {
+    Icon: Camera,
+    number: '4',
+    unit: 'камери',
+    title: 'Мультикамерність',
+    desc: 'Одночасне спостереження з кількох точок у реальному часі',
+  },
+];
 
-  return (
-    <Box
-      component="section"
-      id="features"
-      className="bg-topomap"
-      py={120}
-      px={{ base: 24, md: 80 }}
-    >
-      <Container size="xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <Stack align="center" gap="md" mb={80}>
-            <Badge
-              size="lg"
-              variant="gradient"
-              gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-              className="glow-gold"
-            >
-              Переваги
-            </Badge>
-            <Title
-              order={2}
-              size="3rem"
-              ta="center"
-              style={{ color: 'white' }}
-            >
-              Чому обирають нас
-            </Title>
-            <Text
-              size="lg"
-              ta="center"
-              c="dimmed"
-              maw={600}
-            >
-              Наші перископи поєднують найновіші технології з надійністю військових стандартів
-            </Text>
-          </Stack>
-        </motion.div>
-        
-        <Grid gutter="xl">
-          {features.map((feature, index) => (
-            <Grid.Col key={feature.title} span={{ base: 12, md: 6, lg: 3 }}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <Card
-                  padding="xl"
-                  radius="xl"
-                  className="glass hover-lift"
-                  style={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    border: '1px solid rgba(255, 215, 0, 0.2)',
-                  }}
-                >
-                  {/* Gradient background accent */}
-                  <Box
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 4,
-                      background: `linear-gradient(90deg, ${feature.gradient.from} 0%, ${feature.gradient.to} 100%)`,
-                    }}
-                  />
-                  
-                  <Stack align="center" gap="lg" style={{ position: 'relative', zIndex: 10 }}>
-                    <ActionIcon
-                      size={80}
-                      variant="gradient"
-                      gradient={feature.gradient}
-                      radius="xl"
-                      className="glow-gold"
-                    >
-                      <feature.icon size={40} />
-                    </ActionIcon>
-                    
-                    <Stack gap="xs" align="center">
-                      <Title order={3} size="h4" ta="center" style={{ color: 'white' }}>
-                        {feature.title}
-                      </Title>
-                      <Text size="sm" ta="center" c="dimmed" lh={1.6}>
-                        {feature.description}
-                      </Text>
-                    </Stack>
-                  </Stack>
-                </Card>
-              </motion.div>
-            </Grid.Col>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
-  );
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1, ease: 'easeOut' as const },
+  }),
 };
+
+const Features = () => (
+  <section className={styles.section}>
+    <div className={styles.container}>
+      <motion.div
+        className={styles.header}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.5 }}
+      >
+        <span className={styles.badge}>Переваги</span>
+        <h2 className={styles.sectionTitle}>Чому обирають нас</h2>
+      </motion.div>
+
+      <div className={styles.grid}>
+        {features.map((f, i) => (
+          <motion.div
+            key={f.title}
+            className={styles.feature}
+            custom={i}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+          >
+            <div className={styles.iconWrap}>
+              <f.Icon size={26} />
+            </div>
+            <div className={styles.numberRow}>
+              <span className={styles.number}>{f.number}</span>
+              <span className={styles.unit}>{f.unit}</span>
+            </div>
+            <h3 className={styles.title}>{f.title}</h3>
+            <p className={styles.desc}>{f.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default Features;

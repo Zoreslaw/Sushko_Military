@@ -1,140 +1,131 @@
-import { Badge, Box, Card, Group, List, SimpleGrid, Stack, Text, ThemeIcon, Title } from '@mantine/core';
-import { IconCheck, IconSparkles, IconGauge, IconBolt, IconDeviceCctv } from '@tabler/icons-react';
 import ImageCarousel from '../components/ImageCarousel';
+import { Gauge, Sparkles, Camera, Bolt, Check } from '../icons';
+import s from './shared.module.css';
 
-// Images for the tripod
 const TRIPOD_IMAGES = [
   '/tripod-300-1.jpg',
   '/tripod-300-2.jpg',
-  '/tripod-300-3.jpg'
+  '/tripod-300-3.jpg',
 ];
 
 const ModelTripod300 = () => {
-
   return (
-    <Box>
-      <Stack gap="lg">
-        {/* Header */}
-        <Group justify="space-between" align="flex-start">
-          <div>
-            <Badge size="lg" variant="gradient" gradient={{ from: 'gold', to: 'orange', deg: 45 }}>Tripod-300</Badge>
-            <Title order={2} mt="sm">Професійний штатив</Title>
-            <Text c="dimmed" mt="xs">
-              Компактний та надійний штатив для військового обладнання з регульованою висотою
-            </Text>
+    <div className={s.wrapper}>
+      {/* Header */}
+      <div className={s.headerRow}>
+        <div>
+          <span className={s.badge}>Tripod-300</span>
+          <h2 className={s.title}>Професійний штатив</h2>
+          <p className={s.description}>
+            Компактний та надійний штатив для обладнання спостереження з регульованою висотою
+          </p>
+        </div>
+        <div className={s.headerBadges}>
+          <span className={s.headerBadge}>30-45 см</span>
+          <span className={s.headerBadge}>Ø 35 см</span>
+          <span className={s.headerBadge}>7 кг навантаження</span>
+          <span className={s.headerBadge}>700 грн</span>
+        </div>
+      </div>
+
+      {/* Hero: image + specs */}
+      <div className={s.heroGrid}>
+        <ImageCarousel images={TRIPOD_IMAGES} altPrefix="Tripod-300 фото" fallbackSrc="/vite.svg" autoPlay />
+
+        <div className={s.infoStack}>
+          <div className={s.card}>
+            <div className={s.cardHeader}>
+              <div className={s.cardIcon}><Gauge size={18} /></div>
+              <span className={s.cardTitle}>Технічні характеристики</span>
+            </div>
+            <div className={s.specGrid}>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Робоча висота</span>
+                <span className={s.specValue}>30-45 см</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Діаметр розкладеного</span>
+                <span className={s.specValue}>35 см</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Навантаження</span>
+                <span className={s.specValue}>7 кг</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Матеріал ніжок</span>
+                <span className={s.specValue}>Алюміній</span>
+              </div>
+              <div className={s.specRow}>
+                <span className={s.specLabel}>Матеріал платформи</span>
+                <span className={s.specValue}>Чорний пластик</span>
+              </div>
+            </div>
           </div>
-          <Group gap="sm">
-            <Badge variant="light" color="gold">30-45 см</Badge>
-            <Badge variant="light" color="gold">Ø 35 см</Badge>
-            <Badge variant="light" color="gold">7 кг навантаження</Badge>
-            <Badge variant="light" color="gold">700 грн</Badge>
-          </Group>
-        </Group>
 
-        {/* Hero row: image slider + specifications */}
-        <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
-          <ImageCarousel
-            images={TRIPOD_IMAGES}
-            altPrefix="Tripod-300 фото"
-            fallbackSrc="/vite.svg"
-            autoPlay
-          />
+          <div className={s.card}>
+            <div className={s.cardHeader}>
+              <div className={s.cardIcon}><Sparkles size={18} /></div>
+              <span className={s.cardTitle}>Переваги</span>
+            </div>
+            <ul className={s.checkList}>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Компактні розміри для транспортування</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Швидке розгортання за 30 секунд</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Стабільна опора на будь-якій поверхні</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Універсальне кріплення для різного обладнання</li>
+              <li className={s.checkItem}><span className={s.checkIcon}><Check size={12} /></span>Міцна конструкція для складних умов експлуатації</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-          <Stack>
-            <Card padding="lg" className="glass" radius="md" withBorder>
-              <Group>
-                <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconGauge size={18} /></ThemeIcon>
-                <Text fw={600}>Технічні характеристики</Text>
-              </Group>
-              <SimpleGrid cols={1} spacing="md" mt="sm">
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Робоча висота</Text>
-                  <Text fw={600}>30-45 см</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Діаметр розкладеного</Text>
-                  <Text fw={600}>35 см</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Навантаження</Text>
-                  <Text fw={600}>7 кг</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Матеріал ніжок</Text>
-                  <Text fw={600}>Алюміній</Text>
-                </Group>
-                <Group justify="space-between">
-                  <Text size="sm" c="dimmed">Матеріал платформи</Text>
-                  <Text fw={600}>Чорний пластик</Text>
-                </Group>
-              </SimpleGrid>
-            </Card>
+      {/* Scenarios */}
+      <div className={s.card}>
+        <div className={s.cardHeader}>
+          <div className={s.cardIcon}><Camera size={18} /></div>
+          <span className={s.cardTitle}>Сценарії використання</span>
+        </div>
+        <div className={s.scenarioGrid}>
+          <div>
+            <div className={s.scenarioTitle}>Відеоспостереження</div>
+            <div className={s.scenarioDesc}>Встановлення камер спостереження на об'єктах, контроль під'їзних шляхів</div>
+          </div>
+          <div>
+            <div className={s.scenarioTitle}>Оптичні прилади</div>
+            <div className={s.scenarioDesc}>Підтримка тепловізорів, приладів нічного бачення, біноклів</div>
+          </div>
+          <div>
+            <div className={s.scenarioTitle}>Комунікаційне обладнання</div>
+            <div className={s.scenarioDesc}>Антени, рації, портативні станції зв'язку</div>
+          </div>
+          <div>
+            <div className={s.scenarioTitle}>Освітлення</div>
+            <div className={s.scenarioDesc}>Прожектори, ІЧ-підсвітка, сигнальні ліхтарі</div>
+          </div>
+        </div>
+      </div>
 
-            <Card padding="lg" className="glass" radius="md" withBorder>
-              <Group>
-                <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconSparkles size={18} /></ThemeIcon>
-                <Text fw={600}>Переваги</Text>
-              </Group>
-              <List spacing="xs" mt="sm" icon={<ThemeIcon color="gold" variant="light" size={20} radius="xl"><IconCheck size={14} /></ThemeIcon>}>
-                <List.Item>Компактні розміри для транспортування</List.Item>
-                <List.Item>Швидке розгортання за 30 секунд</List.Item>
-                <List.Item>Стабільна опора на будь-якій поверхні</List.Item>
-                <List.Item>Універсальне кріплення для різного обладнання</List.Item>
-                <List.Item>Міцна конструкція для польових умов</List.Item>
-              </List>
-            </Card>
-          </Stack>
-        </SimpleGrid>
-
-        {/* Usage scenarios */}
-        <Card padding="lg" className="glass" radius="md" withBorder>
-          <Group mb="sm">
-            <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconDeviceCctv size={18} /></ThemeIcon>
-            <Text fw={600}>Сценарії використання</Text>
-          </Group>
-          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
-            <Box>
-              <Text fw={600} mb="xs">Відеоспостереження</Text>
-              <Text size="sm" c="dimmed">Встановлення камер спостереження на позиціях, контроль під'їзних шляхів</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Оптичні прилади</Text>
-              <Text size="sm" c="dimmed">Підтримка тепловізорів, приладів нічного бачення, біноклів</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Комунікаційне обладнання</Text>
-              <Text size="sm" c="dimmed">Антени, рації, портативні станції зв'язку</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Освітлення</Text>
-              <Text size="sm" c="dimmed">Прожектори, ІЧ-підсвітка, сигнальні ліхтарі</Text>
-            </Box>
-          </SimpleGrid>
-        </Card>
-
-        {/* Price and ordering */}
-        <Card padding="lg" className="glass" radius="md" withBorder>
-          <Group mb="sm">
-            <ThemeIcon variant="gradient" gradient={{ from: 'gold', to: 'orange' }} radius="xl"><IconBolt size={18} /></ThemeIcon>
-            <Text fw={600}>Замовлення та доставка</Text>
-          </Group>
-          <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg">
-            <Box>
-              <Text fw={600} mb="xs" style={{ color: 'var(--primary-gold)' }}>Ціна</Text>
-              <Text size="lg" fw={700}>700 грн</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Термін виготовлення</Text>
-              <Text size="sm" c="dimmed">1-2 тижні</Text>
-            </Box>
-            <Box>
-              <Text fw={600} mb="xs">Доставка</Text>
-              <Text size="sm" c="dimmed">По всій Україні</Text>
-            </Box>
-          </SimpleGrid>
-        </Card>
-      </Stack>
-    </Box>
+      {/* Price */}
+      <div className={s.card}>
+        <div className={s.cardHeader}>
+          <div className={s.cardIcon}><Bolt size={18} /></div>
+          <span className={s.cardTitle}>Замовлення та доставка</span>
+        </div>
+        <div className={s.priceGrid}>
+          <div>
+            <div className={s.priceLabel}>Ціна</div>
+            <div className={s.priceValue}>700 грн</div>
+          </div>
+          <div>
+            <div className={s.priceSubLabel}>Термін виготовлення</div>
+            <div className={s.priceSubValue}>1-2 тижні</div>
+          </div>
+          <div>
+            <div className={s.priceSubLabel}>Доставка</div>
+            <div className={s.priceSubValue}>По всій Україні</div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

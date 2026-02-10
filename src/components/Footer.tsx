@@ -1,113 +1,54 @@
-import { motion } from 'framer-motion';
-import { Container, Title, Text, Grid, Stack, Group, Box, Divider, ActionIcon } from '@mantine/core';
-import { IconVideoPlus, IconPhone, IconMail } from '@tabler/icons-react';
+import { SvmLogoMark, Phone, Mail } from '../icons';
+import styles from './Footer.module.css';
 
-const Footer = () => {
-  return (
-    <Box
-      component="footer"
-      style={{
-        background: 'var(--military-light)',
-        borderTop: '1px solid rgba(255, 215, 0, 0.2)',
-      }}
-      pt={80}
-      pb={40}
-      px={{ base: 24, md: 80 }}
-    >
-      <Container size="xl">
-        <Grid gutter="xl" mb={40}>
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <Stack gap="md">
-                <Group gap="md">
-                  <ActionIcon
-                    size={48}
-                    variant="gradient"
-                      gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                      radius="xl"
-                      className="glow-gold"
-                    >
-                      <IconVideoPlus size={24} />
-                    </ActionIcon>
-                    <Title order={3} size="h3" style={{ color: 'white' }}>
-                      SVM
-                    </Title>
-                  </Group>
-                  <Text size="lg" c="dimmed" lh={1.6}>
-                    Українські мобільні комплекси відеоспостереження.
-                  </Text>
-                </Stack>
-              </motion.div>
-            </Grid.Col>
-            
-            <Grid.Col span={{ base: 12, md: 4 }}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Stack gap="md">
-                  <Title order={4} size="h4" style={{ color: 'var(--primary-gold)' }}>
-                    Контакти
-                  </Title>
-                  <Stack gap="sm">
-                    <Group gap="sm">
-                      <IconPhone size={16} style={{ color: 'var(--primary-gold)' }} />
-                      <Text size="sm" c="dimmed">+380 63 389 60 15</Text>
-                    </Group>
-                    <Group gap="sm">
-                      <IconMail size={16} style={{ color: 'var(--primary-gold)' }} />
-                      <Text size="sm" c="dimmed">svm.ml.0754@gmail.com</Text>
-                    </Group>
-                  {/* Адрес удалён по запросу */}
-                </Stack>
-              </Stack>
-            </motion.div>
-          </Grid.Col>         
-          <Grid.Col span={{ base: 12, md: 4 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Stack gap="md">
-                <Title order={4} size="h4" style={{ color: 'var(--primary-gold)' }}>
-                  Підтримка
-                </Title>
-                <Stack gap="sm">
-                  <Text size="sm" c="dimmed">Технічна підтримка 24/7</Text>
-                  <Text size="sm" c="dimmed">Навчання персоналу</Text>
-                  <Text size="sm" c="dimmed">Сервісне обслуговування</Text>
-                </Stack>
-              </Stack>
-            </motion.div>
-          </Grid.Col>
-        </Grid>
-        
-        <Divider color="rgba(255, 215, 0, 0.2)" mb={40} />
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-            <Group justify="center" align="center" wrap="wrap">
-              <Text size="sm" c="dimmed">
-                © 2025 Українські комплекси відеоспостереження. Всі права захищені.
-              </Text>
-            </Group>
-        </motion.div>
-      </Container>
-    </Box>
-  );
-};
+const Footer = () => (
+  <footer className={styles.footer}>
+    <div className={styles.container}>
+      <div className={styles.grid}>
+        <div>
+          <div className={styles.brand}>
+            <SvmLogoMark size={36} className={styles.logoMark} />
+            <div className={styles.logoTextGroup}>
+              <h3 className={styles.logoTitle}>SVM</h3>
+              <span className={styles.logoSub}>SYSTEMS</span>
+            </div>
+          </div>
+          <p className={styles.description}>
+            Українські мобільні комплекси відеоспостереження.
+          </p>
+        </div>
 
-export default Footer; 
+        <div>
+          <h4 className={styles.columnTitle}>Контакти</h4>
+          <div className={styles.contactList}>
+            <div className={styles.contactItem}>
+              <Phone size={16} className={styles.contactIcon} />
+              <span>+380 63 389 60 15</span>
+            </div>
+            <div className={styles.contactItem}>
+              <Mail size={16} className={styles.contactIcon} />
+              <span>svm.ml.0754@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 className={styles.columnTitle}>Підтримка</h4>
+          <div className={styles.supportList}>
+            <span>Технічна підтримка 24/7</span>
+            <span>Навчання персоналу</span>
+            <span>Сервісне обслуговування</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.divider} />
+
+      <p className={styles.copyright}>
+        &copy; 2026 Українські комплекси відеоспостереження. Всі права захищені.
+      </p>
+    </div>
+  </footer>
+);
+
+export default Footer;

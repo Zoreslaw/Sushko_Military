@@ -1,0 +1,123 @@
+.section {
+  padding: var(--space-section) 0;
+  background: var(--color-bg-secondary);
+  position: relative;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+  border: 1px solid rgba(212, 169, 60, 0.2);
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+.list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.item {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itemOpen {
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 16px rgba(212, 169, 60, 0.08);
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.question:hover {
+  color: var(--color-accent);
+}
+
+.chevron {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.answer {
+  overflow: hidden;
+}
+
+.answerInner {
+  padding: 0 var(--space-lg) var(--space-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 540px) {
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .question {
+    padding: var(--space-md);
+    font-size: 0.92rem;
+    gap: var(--space-sm);
+  }
+
+  .answerInner {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 0.88rem;
+  }
+}

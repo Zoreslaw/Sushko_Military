@@ -1,236 +1,111 @@
-@import '@mantine/core/styles.css';
-
-/* Custom styles */
+/* ── Design System ── */
 :root {
-  --military-green: #2D4A1F;
-  --military-dark: #1A2E1A;
-  --military-light: #2F4F2F;
-  --primary-gold: #FFD700;
-  --secondary-blue: #0F2E1F;
-  --accent-orange: #FF6B35;
-  /* Additional palette for tactical backgrounds */
-  --ukr-gold: #FFD700;
-  --ukr-blue: #0057B7;
+  /* Core palette — richer, deeper tones */
+  --color-bg-primary: #080c08;
+  --color-bg-secondary: #0d150d;
+  --color-bg-tertiary: #141f14;
+  --color-bg-elevated: #1a2b1a;
+
+  /* Accent — warm gold with more contrast */
+  --color-accent: #d4a93c;
+  --color-accent-light: #e0bc52;
+  --color-accent-dim: rgba(212, 169, 60, 0.12);
+  --color-accent-glow: rgba(212, 169, 60, 0.25);
+
+  /* Text */
+  --color-text-primary: #f0f0ec;
+  --color-text-secondary: #a0a098;
+  --color-text-muted: #606058;
+
+  /* Borders */
+  --color-border: rgba(212, 169, 60, 0.1);
+  --color-border-hover: rgba(212, 169, 60, 0.3);
+
+  /* Typography — use loaded display fonts */
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Exo 2', 'Rajdhani', -apple-system, sans-serif;
+  --font-heading: 'Oswald', 'Rajdhani', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-section: 5rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 24px rgba(212, 169, 60, 0.2);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 169, 60, 0.06);
+
+  /* Layout */
+  --container-max: 1200px;
+  --nav-height: 64px;
 }
 
-body {
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: linear-gradient(135deg, var(--military-dark) 0%, var(--military-green) 100%);
-  color: white;
-  overflow-x: hidden;
-  min-height: 100vh;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Modern scalable pattern (pure CSS, pixel-perfect on any DPI) */
-.hex-pattern {
-  /* Using multiple vector gradients as tiled layers to avoid raster pixelation */
-  background:
-    radial-gradient(80px 80px at 25% 25%, rgba(255, 215, 0, 0.08) 0 35%, transparent 36%) repeat,
-    radial-gradient(120px 120px at 75% 75%, rgba(0, 87, 183, 0.08) 0 35%, transparent 36%) repeat,
-    linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.05) 50%, transparent 60%) repeat;
-  background-size: 240px 240px, 320px 320px, 120px 120px;
-  background-position: 0 0, 0 0, 0 0;
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* SVG camo pattern via data-URI (vector, no assets), with adjustable tile size */
-.camo-svg {
-  --tile: 320px;
-  background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><defs><radialGradient id='gY' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23FFD700' stop-opacity='0.18'/><stop offset='100%' stop-color='%23FFD700' stop-opacity='0'/></radialGradient><radialGradient id='gB' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%230057B7' stop-opacity='0.14'/><stop offset='100%' stop-color='%230057B7' stop-opacity='0'/></radialGradient><linearGradient id='diag' x1='0' y1='0' x2='1' y2='1'><stop offset='45%' stop-color='%23FFD700' stop-opacity='0'/><stop offset='55%' stop-color='%23FFD700' stop-opacity='0.08'/><stop offset='65%' stop-color='%23FFD700' stop-opacity='0'/></linearGradient></defs><rect width='320' height='320' fill='none'/><g><circle cx='64' cy='64' r='44' fill='url(%23gY)'/><circle cx='256' cy='96' r='36' fill='url(%23gY)'/><circle cx='240' cy='248' r='40' fill='url(%23gB)'/><circle cx='96' cy='224' r='36' fill='url(%23gB)'/></g><g opacity='0.9'><rect x='-80' y='-80' width='640' height='640' fill='url(%23diag)' transform='rotate(45 160 160)'/></g></svg>") 0 0/var(--tile) var(--tile) repeat,
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.camo-svg--subtle { --tile: 300px; }
-.camo-svg--dense  { --tile: 360px; }
-
-/* SVG pattern with seamless soft diagonal stripes */
-.camo-svg-soft {
-  --tile: 320px;
-  background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><defs><radialGradient id='gY' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23FFD700' stop-opacity='0.16'/><stop offset='100%' stop-color='%23FFD700' stop-opacity='0'/></radialGradient><radialGradient id='gB' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%230057B7' stop-opacity='0.12'/><stop offset='100%' stop-color='%230057B7' stop-opacity='0'/></radialGradient><linearGradient id='soft' x1='0' y1='0' x2='1' y2='0' gradientUnits='objectBoundingBox'><stop offset='47%' stop-color='%23FFD700' stop-opacity='0'/><stop offset='50%' stop-color='%23FFD700' stop-opacity='0.07'/><stop offset='53%' stop-color='%23FFD700' stop-opacity='0'/></linearGradient><pattern id='stripes' width='120' height='120' patternUnits='userSpaceOnUse' patternTransform='rotate(45 0 0)'><rect width='120' height='120' fill='none'/><rect x='0' y='0' width='120' height='120' fill='url(%23soft)'/></pattern></defs><g><circle cx='64' cy='64' r='44' fill='url(%23gY)'/><circle cx='256' cy='96' r='36' fill='url(%23gY)'/><circle cx='240' cy='248' r='40' fill='url(%23gB)'/><circle cx='96' cy='224' r='36' fill='url(%23gB)'/></g><rect width='320' height='320' fill='url(%23stripes)'/></svg>") 0 0/var(--tile) var(--tile) repeat,
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.camo-svg-soft--subtle { --tile: 300px; filter: saturate(0.95) opacity(0.96); }
-.camo-svg-soft--dense  { --tile: 360px; }
-
-/* Base layered gradient for readability (already included in patterns below) */
-.bg-base-layer {
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
+button {
+  font-family: inherit;
 }
 
-/* A) Chevrons (military insignia style) */
-.bg-chevrons {
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 215, 0, 0.06) 0 18px,
-      transparent 18px 48px
-    ),
-    repeating-linear-gradient(
-      135deg,
-      rgba(0, 87, 183, 0.04) 0 48px,
-      transparent 48px 96px
-    ),
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
-}
-
-/* B) Hex grid (technical) via SVG pattern */
-.bg-hexgrid {
-  --tile: 96px; /* 80–140 scales hexes */
-  background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'><defs><pattern id='h' width='16' height='14' patternUnits='userSpaceOnUse' patternTransform='scale(2)'><path d='M4 0 L12 0 L16 7 L12 14 L4 14 L0 7 Z' fill='none' stroke='%23FFD700' stroke-opacity='.08' stroke-width='1'/></pattern></defs><rect width='100%' height='100%' fill='url(%23h)'/></svg>") 0 0/var(--tile) calc(var(--tile) * 0.875) repeat,
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
-}
-
-/* C) Topographic lines (recon) */
-.bg-topomap {
-  --tile: 320px; /* 280–380 scales lines */
-  background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><defs><pattern id='p' width='160' height='160' patternUnits='userSpaceOnUse'><path d='M-20 40 C 20 20, 60 60, 100 40 S 180 20, 220 40' stroke='%23FFD700' stroke-opacity='.08' stroke-width='2' fill='none'/><path d='M-20 100 C 20 80, 60 120, 100 100 S 180 80, 220 100' stroke='%230057B7' stroke-opacity='.06' stroke-width='2' fill='none'/></pattern></defs><rect width='100%' height='100%' fill='url(%23p)'/></svg>") 0 0/var(--tile) var(--tile) repeat,
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
-}
-
-/* D) Digital camo (subtle) */
-.bg-digicamo {
-  --tile: 120px; /* 100–160 scales block */
-  background:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='none'/><g opacity='.08' fill='%23FFD700'><rect x='8' y='8' width='20' height='12'/><rect x='44' y='16' width='12' height='12'/><rect x='80' y='8' width='16' height='10'/><rect x='64' y='52' width='20' height='12'/></g><g opacity='.07' fill='%230057B7'><rect x='16' y='64' width='16' height='12'/><rect x='92' y='40' width='12' height='12'/><rect x='36' y='92' width='24' height='12'/></g><g opacity='.08' fill='%23000000'><rect x='72' y='88' width='12' height='10'/><rect x='8' y='96' width='12' height='10'/></g></svg>") 0 0/var(--tile) var(--tile) repeat,
-    linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22)),
-    linear-gradient(180deg, var(--military-dark), var(--military-green));
-}
-
-/* Hex accent for cards */
-.accent-hex {
-  position: absolute;
-  width: 6rem;
-  height: 6rem;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 215, 0, 0));
-  clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
-  filter: drop-shadow(0 6px 18px rgba(255, 215, 0, 0.12));
-  opacity: 0.8;
-}
-.accent-hex.blue {
-  background: linear-gradient(135deg, rgba(0, 87, 183, 0.16), rgba(0, 87, 183, 0));
-  filter: drop-shadow(0 6px 18px rgba(0, 87, 183, 0.12));
-}
-
-/* Floating elements */
-.floating {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(1deg); }
-  66% { transform: translateY(-10px) rotate(-1deg); }
-}
-
-/* Custom scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--military-dark);
+  background: var(--color-bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--primary-gold) 0%, var(--accent-orange) 100%);
+  background: var(--color-accent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--accent-orange) 0%, var(--primary-gold) 100%);
-}
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.glass-dark {
-  background: rgba(47, 58, 47, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-orange) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glow effects */
-.glow-gold {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-}
-
-.glow-blue {
-  box-shadow: 0 0 20px rgba(0, 87, 183, 0.3);
-}
-
-/* Hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Text utilities */
-.text-gradient {
-  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-orange) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Section dividers */
-.section-divider {
-  position: relative;
-  height: 100px;
-  overflow: hidden;
-}
-
-.section-divider::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
-  transform: skewY(-2deg);
-}
-
-/* Animated background */
-.animated-bg {
-  background: linear-gradient(-45deg, var(--military-dark), var(--military-green), var(--secondary-blue), var(--military-light));
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  background: var(--color-accent-light);
 }

@@ -1,259 +1,203 @@
-import { motion } from 'framer-motion';
-import { 
-  Container, 
-  Title, 
-  Text, 
-  Grid, 
-  TextInput, 
-  Textarea, 
-  Button, 
-  Stack, 
-  Group, 
-  Box,
-  Paper,
-  Badge,
-  ActionIcon
-} from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { IconPhone, IconMail, IconClock, IconSend } from '@tabler/icons-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, Mail, Clock, Send, Check } from '../icons';
+import styles from './Contact.module.css';
+
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const Contact = () => {
-  const form = useForm({
-    mode: 'uncontrolled',
-    initialValues: {
-      name: '',
-      email: '',
-      message: ''
-    },
-    validate: {
-      name: (value) => value.trim().length < 2 ? 'Ім\'я має бути довшим' : null,
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Невірний email'),
-      message: (value) => value.trim().length < 10 ? 'Повідомлення має бути довшим' : null,
-    },
-  });
+  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<Status>('idle');
 
-  const handleSubmit = async (values: any) => {
+  const validate = (): FormErrors => {
+    const e: FormErrors = {};
+    if (form.name.trim().length < 2) e.name = "Ім'я має бути довшим";
+    if (!/^\S+@\S+$/.test(form.email)) e.email = 'Невірний email';
+    if (form.message.trim().length < 10) e.message = 'Повідомлення має бути довшим';
+    return e;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setStatus('submitting');
     try {
       const resp = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(form),
       });
       if (!resp.ok) throw new Error('Network error');
-      alert('Дякуємо! Повідомлення надіслано.');
-      form.reset();
-    } catch (e) {
-      alert('Сталася помилка при надсиланні. Спробуйте ще раз пізніше.');
+      setStatus('success');
+      setForm({ name: '', email: '', message: '' });
+      setErrors({});
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
+  const handleChange = (field: keyof FormState, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
   return (
-    <Box
-      component="section"
-      id="contact"
-      className="glass-dark"
-      py={120}
-      px={{ base: 24, md: 80 }}
-    >
-      <Container size="xl">
+    <section id="contact" className={styles.section}>
+      <div className={styles.container}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className={styles.header}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5 }}
         >
-          <Stack align="center" gap="md" mb={80}>
-            <Badge
-              size="lg"
-              variant="gradient"
-              gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-              className="glow-gold"
-            >
-              Контакти
-            </Badge>
-            <Title
-              order={2}
-              size="3rem"
-              ta="center"
-              style={{ color: 'white' }}
-            >
-              Зв'яжіться з нами
-            </Title>
-            {/* Subtitle removed per layout update */}
-          </Stack>
+          <span className={styles.badge}>Контакти</span>
+          <h2 className={styles.title}>Зв'яжіться з нами</h2>
         </motion.div>
 
-        <Grid gutter="xl">
-          <Grid.Col span={{ base: 12, md: 6 }}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Stack gap="xl">
-                <Box>
-                  <Title order={3} size="h3" mb="md" style={{ color: 'white' }}>
-                    Контакти
-                  </Title>
-                </Box>
-                
-                <Stack gap="lg">
-                  <Group gap="md">
-                    <ActionIcon
-                      size={48}
-                      variant="gradient"
-                      gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                      radius="xl"
-                      className="glow-gold"
-                    >
-                      <IconPhone size={24} />
-                    </ActionIcon>
-                    <Box>
-                      <Text fw={600} size="lg">Телефон</Text>
-                      <Text c="dimmed">+380 63 389 60 15</Text>
-                    </Box>
-                  </Group>
-                  
-                  <Group gap="md">
-                    <ActionIcon
-                      size={48}
-                      variant="gradient"
-                      gradient={{ from: 'blue', to: 'cyan', deg: 45 }}
-                      radius="xl"
-                      className="glow-blue"
-                    >
-                      <IconMail size={24} />
-                    </ActionIcon>
-                    <Box>
-                      <Text fw={600} size="lg">Email</Text>
-                      <Text c="dimmed">svm.ml.0754@gmail.com</Text>
-                    </Box>
-                  </Group>
-                  
-                  <Group gap="md">
-                    <ActionIcon
-                      size={48}
-                      variant="gradient"
-                      gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                      radius="xl"
-                      className="glow-gold"
-                    >
-                      <IconClock size={24} />
-                    </ActionIcon>
-                    <Box>
-                      <Text fw={600} size="lg">Графік роботи</Text>
-                      <Text c="dimmed">Пн-Пт: 9:00-18:00</Text>
-                    </Box>
-                  </Group>
-                  
-                  {/* Адреса удалена по запросу */}
-                </Stack>
-              </Stack>
-            </motion.div>
-          </Grid.Col>
-          
-          <Grid.Col span={{ base: 12, md: 6 }}>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Paper
-                p={40}
-                radius="xl"
-                className="glass"
-                style={{
-                  border: '1px solid rgba(255, 215, 0, 0.2)',
-                }}
+        <div className={styles.grid}>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className={styles.infoTitle}>Контакти</h3>
+            <div className={styles.infoList}>
+              <div className={styles.infoItem}>
+                <div className={styles.infoIcon}><Phone size={22} /></div>
+                <div>
+                  <div className={styles.infoLabel}>Телефон</div>
+                  <div className={styles.infoValue}>+380 63 389 60 15</div>
+                </div>
+              </div>
+              <div className={styles.infoItem}>
+                <div className={styles.infoIcon}><Mail size={22} /></div>
+                <div>
+                  <div className={styles.infoLabel}>Email</div>
+                  <div className={styles.infoValue}>svm.ml.0754@gmail.com</div>
+                </div>
+              </div>
+              <div className={styles.infoItem}>
+                <div className={styles.infoIcon}><Clock size={22} /></div>
+                <div>
+                  <div className={styles.infoLabel}>Графік роботи</div>
+                  <div className={styles.infoValue}>Пн-Пт: 9:00-18:00</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.field}>
+                <label className={styles.label}>Ім'я</label>
+                <input
+                  className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
+                  type="text"
+                  placeholder="Ваше ім'я"
+                  value={form.name}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                  required
+                />
+                {errors.name && <span className={styles.error}>{errors.name}</span>}
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>E-mail</label>
+                <input
+                  className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
+                  type="email"
+                  placeholder="your@email.com"
+                  value={form.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  required
+                />
+                {errors.email && <span className={styles.error}>{errors.email}</span>}
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>Повідомлення</label>
+                <textarea
+                  className={`${styles.textarea} ${errors.message ? styles.inputError : ''}`}
+                  placeholder="Ваше повідомлення"
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => handleChange('message', e.target.value)}
+                  required
+                />
+                {errors.message && <span className={styles.error}>{errors.message}</span>}
+              </div>
+
+              <button
+                className={styles.submitBtn}
+                type="submit"
+                disabled={status === 'submitting'}
               >
-                <form onSubmit={form.onSubmit(handleSubmit)}>
-                  <Stack gap="lg">
-                    <TextInput
-                      label="Ім'я"
-                      placeholder="Ваше ім'я"
-                      required
-                      size="md"
-                      {...form.getInputProps('name')}
-                      styles={{
-                        input: {
-                          background: 'rgba(255, 255, 255, 0.9)',
-                          color: 'black',
-                          border: 'none',
-                        },
-                        label: {
-                          color: 'white',
-                          fontWeight: 600,
-                        }
-                      }}
-                    />
-                    
-                    <TextInput
-                      label="E-mail"
-                      placeholder="your@email.com"
-                      required
-                      size="md"
-                      {...form.getInputProps('email')}
-                      styles={{
-                        input: {
-                          background: 'rgba(255, 255, 255, 0.9)',
-                          color: 'black',
-                          border: 'none',
-                        },
-                        label: {
-                          color: 'white',
-                          fontWeight: 600,
-                        }
-                      }}
-                    />
-                    
-                    <Textarea
-                      label="Повідомлення"
-                      placeholder="Ваше повідомлення"
-                      required
-                      minRows={4}
-                      size="md"
-                      {...form.getInputProps('message')}
-                      styles={{
-                        input: {
-                          background: 'rgba(255, 255, 255, 0.9)',
-                          color: 'black',
-                          border: 'none',
-                          resize: 'none',
-                        },
-                        label: {
-                          color: 'white',
-                          fontWeight: 600,
-                        }
-                      }}
-                    />
-                    
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        type="submit"
-                        fullWidth
-                        size="lg"
-                        variant="gradient"
-                        gradient={{ from: 'gold', to: 'orange', deg: 45 }}
-                        className="glow-gold hover-lift"
-                        leftSection={<IconSend size={20} />}
-                      >
-                        Відправити повідомлення
-                      </Button>
-                    </motion.div>
-                  </Stack>
-                </form>
-              </Paper>
-            </motion.div>
-          </Grid.Col>
-        </Grid>
-      </Container>
-    </Box>
+                {status === 'submitting' ? (
+                  <>Надсилання...</>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Відправити повідомлення
+                  </>
+                )}
+              </button>
+
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    className={styles.toast}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Check size={18} />
+                    Дякуємо! Повідомлення надіслано.
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    className={`${styles.toast} ${styles.toastError}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Сталася помилка. Спробуйте ще раз.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default Contact; 
+export default Contact;

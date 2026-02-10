@@ -1,33 +1,32 @@
-import { MantineProvider } from '@mantine/core';
-import { theme } from './mantine';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import Cases from './components/Cases';
+import Features from './components/Features';
 import Models from './components/Models';
-import ModelOverlay from './components/ModelOverlay';
+import CtaBanner from './components/CtaBanner';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 import MarketingScripts from './components/MarketingScripts';
+import ModelOverlay from './components/ModelOverlay';
 
 function App() {
   return (
-    <MantineProvider theme={theme} defaultColorScheme="dark">
-      <div className="relative bg-gradient-to-b from-military-dark to-military-green text-white font-sans overflow-x-hidden">
-        <Navigation />
+    <>
+      <Navigation />
+      <main>
         <Hero />
-        {/* Features and HowItWorks removed as per layout update */}
+        <Features />
         <Models />
-        <Cases />
+        <CtaBanner />
         <FAQ />
         <Contact />
-        <Footer />
-        <CookieConsent />
-        <MarketingScripts />
-        <ModelOverlay />
-      </div>
-    </MantineProvider>
+      </main>
+      <Footer />
+      <CookieConsent />
+      <MarketingScripts />
+      <ModelOverlay />
+    </>
   );
 }
 
