@@ -3,13 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from '../icons';
 import styles from './ModelOverlay.module.css';
 
-const ModelMK1 = lazy(() => import('../model-details/ModelMK1'));
+const ModelMini = lazy(() => import('../model-details/ModelMini'));
+const ModelMaxi = lazy(() => import('../model-details/ModelMaxi'));
+const ModelNich = lazy(() => import('../model-details/ModelNich'));
 const ModelTripod300 = lazy(() => import('../model-details/ModelTripod300'));
 const ModelTripod600 = lazy(() => import('../model-details/ModelTripod600'));
 const ModelTripod750 = lazy(() => import('../model-details/ModelTripod750'));
 
 const slugToComponent: Record<string, React.LazyExoticComponent<() => React.ReactElement>> = {
-  mk1: ModelMK1,
+  mini: ModelMini,
+  maxi: ModelMaxi,
+  nich: ModelNich,
   'tripod-300': ModelTripod300,
   'tripod-600': ModelTripod600,
   'tripod-750': ModelTripod750,

@@ -293,6 +293,10 @@
   line-height: 1.6;
 }
 
+.deploymentTextPrimary {
+  color: var(--color-text-primary);
+}
+
 /* Mobile optimizations */
 @media (max-width: 480px) {
   .card {

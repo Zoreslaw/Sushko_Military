@@ -3,12 +3,13 @@ import { Camera, Antenna, Bolt, Network, Sparkles, Gauge, Battery, Check } from 
 import s from './shared.module.css';
 
 const SVM_IMAGES = [
-  '/svm-maxi-case.jpg',
-  '/svm-maxi-sheet-1.jpg',
-  '/svm-maxi-sheet-2.jpg',
+  '/svm-maxi.jpg',
+  '/svm-maxi-1.jpg',
+  '/svm-maxi-2.jpg',
+  '/svm-maxi-3.jpg',
 ];
 
-const ModelMK1 = () => {
+const ModelMaxi = () => {
   return (
     <div className={s.wrapper}>
       {/* Header */}
@@ -67,7 +68,7 @@ const ModelMK1 = () => {
           <div className={s.cardIcon}><Bolt size={18} /></div>
           <span className={s.cardTitle}>Схема розгортання</span>
         </div>
-        <p className={s.deploymentText}>
+        <p className={`${s.deploymentText} ${s.deploymentTextPrimary}`}>
           Оператор може знаходитись у віддаленому місці від основного кейсу; мережа масштабується з можливістю об'єднання кількох комплексів SVM‑MAXI. Дальність спостереження до 1 км, з оптоволоконним зв'язком — до кількох кілометрів.
         </p>
       </div>
@@ -144,4 +145,4 @@ const ModelMK1 = () => {
   );
 };
 
-export default ModelMK1;
+export default ModelMaxi;
